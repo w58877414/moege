@@ -1,21 +1,2 @@
-±¾Õ¾ÊÇÒ»¸öÔ­»­×ÊÔ´·ÖÏíÍøÕ¾£¬Ã¿¸ö²ÎÓëÕß¶¼¿ÉÒÔÀûÓÃ±¾Æ½Ì¨½øÐÐ×Ô¼º×÷Æ·µÄ·ÖÏí£¬ä¯ÀÀ¼°¼ìË÷ÆäËû²ÎÓëÕßµÄ×÷Æ·£¬²¢ÄÜ¹»¶ÔËûÈËµÄ×÷Æ·½øÐÐ´ò·ÖÆÀ¼Û£¬ÒÔ¼°ÆÀÂÛ½»Á÷¡£
-µçÄÔ¶ËµØÖ·£ºwebsite
-ÒÆ¶¯¶ËµØÖ·£ºwebsite/?m=Moem
-ºóÌ¨µØÖ·£ºwebsite/?m=MoeDemo
-ÌåÑéÕË»§£¬Çë²é¿´±¾ÎÄÄ©Î²¡£
-±¾ÏµÍ³¼Ü¹¹ÊÇ·ÂÕÕCI¿ò¼ÜµÄÊ¹ÓÃÄ£Ê½£¬ÀûÓÃÔ­ÉúPHP¹¹½¨µÄ»ùÓÚMVCµÄÍøÕ¾³ÌÐò£¬³ýÍøÕ¾ÎÄ±¾±à¼­Æ÷¼°ÆÀÂÛ¹¦ÄÜÍâ£¬Ã»ÓÐÊ¹ÓÃÈÎºÎµÚÈý·½µÄÂÖ×Ó£¬Ç°¶ËÔòÖ»Ê¹ÓÃÁËJQuery¡£
-ËäÓÐºÜ¶à²»³ÉÊìµÄµØ·½£¬µ«³õÆÚµÄ¹¦ÄÜÒÑ»ù±¾ÍêÉÆ£¬¿É×÷ÎªÉÏÏßµÄ³ÌÐò´¦Àí¡£
-Õû¸öÏµÍ³ºËÐÄÎÄ¼þÎª26.2KB£¨Î´Ñ¹Ëõ£©£¬°üº¬ÁË6¸ö³£ÓÃµÄ·â×°Àà£º¢ÙÊý¾Ý¿âconnÀà¡¢¢Ú¶¥¼¶baseÀà¡¢¢ÛÄ£ÐÍModelÀà¡¢¢Ü¿ØÖÆÆ÷ControllerÀà¡¢¢ÝÍ¼Æ¬´¦ÀíimgGDÀà¡¢¢ÞÑéÖ¤ÂëimgCodeÀà¡£
-¢ÙÊý¾Ý¿âconnÀà£ºÊ¹ÓÃPDO¶ÔÏóÁ¬½ÓÊý¾Ý¿â£¬Ê¹ÓÃ³Ö¾Ã»¯Á¬½Ó£¬²¢¹¹½¨ÁËÏà¶ÔÍêÉÆµÄ¸ñÊ½»¯²Ù×÷·½·¨£¬Ò»¶¨³Ì¶ÈÉÏ±ÜÃâÁËsql×¢ÈëµÄ·çÏÕ£¬ÇÒÖ§³ÖrollBack»Ø¹ö²Ù×÷¡£
-¢Ú¶¥¼¶baseÀà£º°üº¬ÁË³£ÓÃµÄÒ»Ð©·½·¨²Ù×÷£¬ÀýÈç¼ÓÃÜ£¬¸ñÊ½»¯£¬±íµ¥¹ýÂË£¬URL²ÎÊý²Ù×÷£¬URLÌø×ªµÈ³£ÓÃµÄ·½·¨¡£
-¢ÛÄ£ÐÍModelÀà£º°üº¬ÁËÄ£ÐÍ¶ÔÓ¦Êý¾Ý¿âµÄ³õÊ¼»¯²Ù×÷¡£
-¢Ü¿ØÖÆÆ÷ControllerÀà£º°üº¬ÁË¶ÔÄ£ÐÍÒÔ¼°Ä£°åÊÓÍ¼µÄ¼ì²â¡¢³õÊ¼»¯£¬µ÷ÓÃ£¬Êý¾Ý´«µÝµÈ·½·¨¡£
-¢ÝÍ¼Æ¬´¦ÀíimgGDÀà£º°üº¬ÁË¶ÔÍ¼Æ¬µÄ´óÐ¡£¬³ß´ç£¬½ØÈ¡£¬Éú³ÉµÈ´¦Àí£¬ÎªÁË±ÜÃâÍ¼Æ¬¹¥»÷£¬±¾Õ¾ÉÏ´«µÄÍ¼Æ¬²»»áÖ±½Ó´æÈëÎÄ¼þ£¬¶øÊÇÍ¨¹ýimagecopyresampled()·½·¨£¬ÖØ²ÉÑùÉú³ÉÊý¾Ý£¬ÒÔ´Ë²ÅÄÜ´æÈë±¾µØ¡£
-¢ÞÑéÖ¤ÂëimgCodeÀà£ºÀûÓÃGD¿â¹¹½¨µÄÑéÖ¤ÂëÉú³ÉÀà¡£
-±¾ÏµÍ³ÕûÌåÊµÏÖ²¢²»À§ÄÑ£¬¿ª·¢¹ý³ÌÖÐËù»¨·ÑµÄÊ±¼äÖ÷Òª»¹ÊÇÏ¸½ÚÉÏµÄÎÊÌâ£º
-            ºó¶ËÊ±¼äÖ÷Òª»¨ÔÚÊý¾Ý¿âÓÅ»¯£¬·½·¨¸ñÊ½»¯·â×°£¬Í¼Æ¬´¦ÀíÉÏµÈ¡£
-            Ç°¶ËÊ±¼äÖ÷Òª»¨ÔÚÍ·Ïñ±à¼­½ØÈ¡¹¦ÄÜ£¬×ÔÊÊÓ¦£¬ºóÌ¨²Ëµ¥À¸·ÂwordpressµÄ»¬¶¯Ð§¹ûµÈ¡£
-¹ÜÀíÔ±ÕË»§£ºadmin¡¢admin1¡¢admin2£¨ÃÜÂë¾ùÎªadminadmin£¬¸÷×Ô¶ÔÓ¦×Å²»Í¬µÄÈ¨ÏÞµÈ¼¶£©
-ÓÃ»§ÕË»§£ºadmin1¡¢caiwenhao¡¢macong¡¢wangmengyu¡¢xbz0412£¨ÃÜÂë¾ùÎªuseruser£©
-PS£ººóÌ¨¹ÜÀíÔ±ÕË»§ÁÐ±íÈë¿Ú£¬Îªµã»÷×ó²à²Ëµ¥À¸¹ÜÀíÔ±Í·Ïñ£¬¹ÜÀíÔ±µÄÈÎºÎ¸ü¸Ä²Ù×÷¶¼»á±»¼ÇÂ¼Îª²Ù×÷ÈÕÖ¾¡£
-PS£º±¾ÓòÃûÎª²âÊÔÕ¹Ê¾ÓÃ£¬ËùÒÔ¿ª·ÅËùÓÐ¹¦ÄÜ¼°ÕË»§£¬ÓÃ»§ÕË»§admin1´æÔÚÉÏ´«×÷Æ·£¨Îª±¾ÈËËù»­£©£¬É¾³ý²Ù×÷ÉñÂíµÄÒ²ÇëËæÒâ£¬µ«ÎªÁËÈÃÆäËûÈËÒ²ÄÜ¹»Õý³£ä¯ÀÀ£¬ÓÃ»§ÐÅÏ¢ÐÞ¸Ä¹¦ÄÜ±»ÎÒ½ûÖ¹ÁË£¬¸Ã¹«¸æÒ²±»½ûÖ¹±à¼­£¬Çë¼ûÁÂ£¬ÎÒÒ²»áÊ±²»Ê±¸üÐÂ¿ìÕÕ¡£
+æœ¬ç«™æ˜¯ä¸€ä¸ªåŽŸç”»èµ„æºåˆ†äº«ç½‘ç«™ï¼Œæ¯ä¸ªå‚ä¸Žè€…éƒ½å¯ä»¥åˆ©ç”¨æœ¬å¹³å°è¿›è¡Œè‡ªå·±ä½œå“çš„åˆ†äº«ï¼Œæµè§ˆåŠæ£€ç´¢å…¶ä»–å‚ä¸Žè€…çš„ä½œå“ï¼Œå¹¶èƒ½å¤Ÿå¯¹ä»–äººçš„ä½œå“è¿›è¡Œæ‰“åˆ†è¯„ä»·ï¼Œä»¥åŠè¯„è®ºäº¤æµã€‚
+æœ¬ç³»ç»Ÿæž¶æž„æ˜¯ä»¿ç…§CIæ¡†æž¶çš„ä½¿ç”¨æ¨¡å¼ï¼Œåˆ©ç”¨åŽŸç”ŸPHPæž„å»ºçš„åŸºäºŽMVCçš„ç½‘ç«™ç¨‹åºï¼Œé™¤ç½‘ç«™æ–‡æœ¬ç¼–è¾‘å™¨åŠè¯„è®ºåŠŸèƒ½å¤–ï¼Œæ²¡æœ‰ä½¿ç”¨ä»»ä½•ç¬¬ä¸‰æ–¹çš„è½®å­ï¼Œå‰ç«¯åˆ™åªä½¿ç”¨äº†JQueryã€‚

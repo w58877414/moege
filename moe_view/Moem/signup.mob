@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="wap-font-scale" content="no">
+    <meta name="full-screen" content="yes">
+    <title><?=$data['title']?></title>
+    <link rel="stylesheet" type="text/css" href="<?=$pageurl?>/css/style.css">
+</head>
+<body>
+<div id="login">
+    <div class="logo"><img src="<?=$pageurl?>/img/logo.png"></div>
+    <form action="<?=$pageviews?>&v=signuping" name="signup_form" method="post">
+        <div><span>用户名：</span><input type="text" name="username" id="username" value="" placeholder="请输入用户名"/></div>
+        <div><span>昵称：</span><input type="text" name="nickname" id="nickname" value="" placeholder="请输入昵称"/></div>
+        <div><span>密码：</span><input type="password" name="password1" id="password1" value="" placeholder="请输入密码"/></div>
+        <div><span>密码：</span><input type="password" name="password2" id="password2" value="" placeholder="请再次输入"/></div>
+        <div><span>验证码：</span><input type="text" name="imgcode" id="imgcode" value=""/>
+			<img id="imgcodeimg" src="?v=imgCode&id=<?=rand()?>" onclick="this.src='?v=imgCode&id='+Math.random();">
+		</div>
+        <div class="btn"><a class="s" onclick="login_submit()">注册</a><a class="b" onclick="window.location.href=document.referrer;">返回</a></div>
+    </form>
+</div>
+<script src="<?=$pageurl?>/js/jquery-3.1.1.min.js"></script>
+<script src="<?=$pageurl?>/js/style.js"></script>
+<script>
+    function login_submit() {
+        userrap = new RegExp("<?=trim($this->gset['user_rap'],'/')?>");
+        nickname = $('#nickname').val().replace(/\s/g, "");
+        username = $('#username').val().replace(/\s/g, "");
+        pass1 = $('#password1').val().replace(/\s/g, "");
+        pass2 = $('#password2').val().replace(/\s/g, "");
+        $('#nickname').val(nickname);
+        $('#username').val(username);
+        $('#password1').val(pass1);
+        $('#password2').val(pass2);
+        if(nickname==''){
+            $('.login_error').text('昵称不能为空!');
+            return false;
+        }else if(username==''){
+            $('.login_error').text('用户名不能为空!');
+            return false;
+        }else if(pass1==''){
+            $('.login_error').text('密码不能为空!');
+            return false;
+        }else if(pass2==''){
+            $('.login_error').text('密码不能为空!');
+            return false;
+        }else if(pass2!=pass1){
+            $('.login_error').text('两次输入的密码不一致');
+            return false;
+        }
+        signup_form.submit();
+    }
+</script>
+</body>
+</html>

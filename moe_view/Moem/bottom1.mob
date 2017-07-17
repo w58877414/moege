@@ -1,0 +1,1 @@
+<script src="<?=$pageurl?>/js/jquery-3.1.1.min.js"></script><script src="<?=$pageurl?>/js/style.js"></script></body></html>

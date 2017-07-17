@@ -1,0 +1,78 @@
+<div class="member_head">
+    <div class="head_bg"></div>
+    <div class="head">
+        <img src="<?=$data['minfo']['m_head']?>"/>
+    </div>
+    <h2><?=$data['minfo']['m_nickname']?></h2>
+</div>
+<div class="member_other">
+    <a href="<?=$pageviews?>&v=memberList&mid=<?=$data['minfo']['m_id']?>"><?=$data['follownum']?><span>关注</span></a>
+    <a href="<?=$pageviews?>&v=memberList&fmid=<?=$data['minfo']['m_id']?>"><?=$data['fansnum']?><span>粉丝</span></a>
+</div>
+<div class="member_des"><?=$data['minfo']['m_info']?></div>
+<div class="member_info">
+    <div class="info">
+        <div class="l">创建日期：</div>
+        <div class="r"><?=$data['minfo']['m_ctime']?></div>
+    </div>
+    <div class="info">
+        <div class="l">出生日期：</div>
+        <div class="r"><?=$data['minfo']['m_birthday']?></div>
+    </div>
+    <div class="info">
+        <div class="l">性别：</div>
+        <div class="r"><?=$data['minfo']['m_gender']?></div>
+    </div>
+    <div class="info">
+        <div class="l">职业：</div>
+        <div class="r"><?=$data['minfo']['m_job']?></div>
+    </div>
+    <div class="info">
+        <div class="l">位置：</div>
+        <div class="r"><?=$data['minfo']['m_address']?></div>
+    </div>
+    <div class="info">
+        <div class="l">邮箱：</div>
+        <div class="r"><?=$data['minfo']['m_email']?></div>
+    </div>
+    <div class="info">
+        <div class="l">QQ：</div>
+        <div class="r"><?=$data['minfo']['m_qq']?></div>
+    </div>
+    <div class="info">
+        <div class="l">作画工具：</div>
+        <div class="r"><?=$data['minfo']['m_tools']?></div>
+    </div>
+    <div class="info">
+        <div class="l">个性标签：</div>
+        <div class="r"><?=$data['minfo']['m_tag']?></div>
+    </div>
+</div>
+<div class="member_pic clearfix">
+    <div class="title">插画作品<a href="<?=$pageviews?>&mid=<?=$data['minfo']['m_id']?>"><?=$data['imgnum']?>件作品</a></div>
+    <?php
+    if(count($data['imgsome'])>0){
+        foreach ($data['imgsome'] as $k => $v){
+            ?>
+            <a href="<?=$pageviews?>&v=pic&pid=<?=$v['pic_id']?>"><img src="<?=$v['pic_ssrc']?>"/></a>
+            <?php
+        }
+    }else{
+        echo '无作品';
+    }
+    ?>
+</div>
+<div class="member_pic clearfix">
+    <div class="title">收藏作品<a href="<?=$pageviews?>&fmid=<?=$data['minfo']['m_id']?>"><?=$data['fimgnum']?>件作品</a></div>
+    <?php
+    if(count($data['fimgsome'])>0){
+        foreach ($data['fimgsome'] as $k => $v){
+            ?>
+            <a href="<?=$pageviews?>&v=pic&pid=<?=$v['pic_id']?>"><img src="<?=$v['pic_ssrc']?>"/></a>
+            <?php
+        }
+    }else{
+        echo '无作品';
+    }
+    ?>
+</div>

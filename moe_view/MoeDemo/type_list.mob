@@ -1,0 +1,78 @@
+<div id="right_type_main" class="right_main_main">
+	<div class="right_title"><h1><?=$data['title']?></h1></div>
+	<div id="right_type_menu" class="right_menu_main">
+        <div id="right_type_menu_left" class="right_menu_left">
+            <form action="" method="get">
+				<?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+				<?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+                <ul class="clearfix">
+                    <li><a onclick="openMark('#typeaddbox')">添加分类</a></li>
+					<li><a href="<?=$pageviews?>&v=type">全部</a></li>
+					<li><a href="<?=$pageviews?>&v=type&o=num">热度排序</a></li>
+					<li><input type="text" name="search" id="search" value=""/><input type="submit" value="筛选"/></li>
+                </ul>
+            </form>
+        </div>
+	</div>
+	<div id="right_type_list" class="right_list_table">
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<th width="6%">ID</th>
+				<th width="18%">分类名</th>
+				<th width="36%">简介</th>
+				<th width="10%">总数</th>
+				<th width="30%">操作</th>
+			</tr>
+            <?php
+            if (count($data['typelist'])){
+                foreach ($data['typelist'] as $k => $v) {
+            ?>
+			<tr>
+				<td><?=$v['type_id']?></td>
+				<td><?=$v['type_name']?></td>
+				<td><?=$v['type_info']?></td>
+				<td><?=$v['type_num']?></td>
+				<td>
+                    <a href="<?=$pageviews?>&v=pic&typeid=<?=$v['type_id']?>">作品查看</a>
+                    <a onclick="typeupdclick('<?=$v['type_id']?>','<?=$v['type_name']?>','<?=$v['type_info']?>')">修改</a>
+                    <a href="<?=$pageviews?>&v=typeDel&typeid=<?=$v['type_id']?>" onclick="if(confirm('确实要删除-<?=$v['type_name']?>-分类吗?')){return true;}else{return false;}">删除</a>
+                </td>
+			</tr>
+            <?php
+                }
+            }else{
+                echo '<h3 style="text-algin:center; font-size: 24px;">无查询结果</h3>';
+            }
+            ?>
+		</table>
+	</div>
+	<div class="pages clearfix">
+        <?=$data['pages']?>
+	</div>
+</div>
+<div id="mask"></div>
+<div id="typeupdbox" class="popup_box">
+	<form action="<?=$pageviews?>&v=typeUpd" method="post" name="typeupd">
+		<div class="boxtitle">- 修改分类 -</div>
+		<input name="typeid" value="" type="hidden">
+		<div class="boxrow"><span>分类名：</span><input name="typename" value="" type="text"></div>
+		<div class="boxrows"><span>分类简介：</span></span><textarea rows="3" name="typeinfo"></textarea></div>
+		<div class="boxrow"><a onclick="typeupd.submit();">修改</a><a onclick="closeMark('#typeupdbox')">取消</a></div>
+	</form>
+</div>
+<div id="typeaddbox" class="popup_box">
+	<form action="<?=$pageviews?>&v=typeAdd" method="post" name="typeadd">
+		<div class="boxtitle">- 新增分类 -</div>
+		<div class="boxrow"><span>分类名：</span><input name="typename" value="" type="text"></div>
+		<div class="boxrows"><span>分类简介：</span></span><textarea rows="3" name="typeinfo"></textarea></div>
+		<div class="boxrow"><a onclick="typeadd.submit();">添加</a><a onclick="closeMark('#typeaddbox')">取消</a></div>
+	</form>
+</div>
+<script type="text/javascript">
+	function typeupdclick(typeid,typename,typeinfo){
+		openMark('#typeupdbox');
+		$("#typeupdbox input[name='typeid']").val(typeid);
+		$("#typeupdbox input[name='typename']").val(typename);
+		$("#typeupdbox textarea").val(typeinfo);
+	}
+</script>

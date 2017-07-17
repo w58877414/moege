@@ -1,0 +1,1 @@
+<div id="article" class="autow">    <div class="article_type"><a href="./">格萌网</a><span></span><a>公告</a></div>    <div class="article_title"><?=$data['notice']['title']?><span><?=$data['notice']['ctime']?></span></div>    <div class="article_content"><?=html_entity_decode($data['notice']['article'])?></div></div>

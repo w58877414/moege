@@ -1,0 +1,126 @@
+		<div id="right_pic_main" class="right_main_main">
+			<div class="right_title"><h1><?=$data['title']?></h1></div>
+			<div id="right_pic_menu" class="right_menu_main">
+				<div id="right_pic_menu_left" class="right_menu_left">
+					<form action="" method="get">
+						<ul>
+							<?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+							<?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+							<?=$_GET['o']?'<input type="hidden" name="o" value="'.$_GET['o'].'"/>':'';?>
+							<?=$_GET['date']?'<input type="hidden" name="date" value="'.$_GET['date'].'"/>':'';?>
+							<li><a href="<?=$pageviews?>&v=pic">全部最新</a></li>
+							<li><select>
+									<option value="<?=$this->model->self_urlget_del('isshow', 'p')?>">全部审核</option>
+									<option value="<?=$this->model->self_urlget_replace('isshow', '1', 'p')?>"<?=$_GET['isshow']==='1'?' selected':'';?>>已审核</option>
+									<option value="<?=$this->model->self_urlget_replace('isshow', '0', 'p')?>"<?=$_GET['isshow']==='0'?' selected':'';?>>未审核</option>
+								</select></li>
+							<li><select>
+									<option value="<?=$this->model->self_urlget_del('date','p')?>">默认浏览排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'alltimes', 'p')?>"<?=$_GET['o']=='alltimes'?' selected':'';?>>总点击排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'daytimes', 'p')?>"<?=$_GET['o']=='daytimes'?' selected':'';?>>日点击排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'weektimes', 'p')?>"<?=$_GET['o']=='weektimes'?' selected':'';?>>周点击排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'allgrade', 'p')?>"<?=$_GET['o']=='allgrade'?' selected':'';?>>总评分排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'daygrade', 'p')?>"<?=$_GET['o']=='daygrade'?' selected':'';?>>日评分排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'weekgrade', 'p')?>"<?=$_GET['o']=='weekgrade'?' selected':'';?>>周评分排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'allgrades', 'p')?>"<?=$_GET['o']=='allgrades'?' selected':'';?>>总评次排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'daygrades', 'p')?>"<?=$_GET['o']=='daygrades'?' selected':'';?>>日评次排序</option>
+									<option value="<?=$this->model->self_urlget_replace('o', 'weekgrades', 'p')?>"<?=$_GET['o']=='weekgrades'?' selected':'';?>>周评次排序</option>
+								</select></li>
+							<li><select id="date">
+								<option value="<?=$this->model->self_urlget_del('date','p')?>">日期筛选列表</option>
+								<?php
+								if (count($data['datelist'])){
+									foreach ($data['datelist'] as $k => $v) {
+										$select = '';
+										if ($v[0] == $_GET['date']){
+											$select = ' selected';
+										}
+										echo '<option value="'.$this->model->self_urlget_replace('date', $v[0], 'p').'"'.$select.'>'.$this->model->date_format_str($v[0],'Y年m月').'</option>';
+									}
+								}else{
+									echo '<option value="0">无时间数据</option>';
+								}
+								?>
+							</select></li>
+							<li><input type="text" name="search" id="search" value="<?=$_GET['search']?>"/><input type="submit" value="筛选"/></li>
+						</ul>
+					</form>
+
+					<script type="text/javascript">
+						$('#right_pic_menu_left').find('select').change(function(){
+								window.location.href=$(this).val();
+							}
+						);
+					</script>
+				</div>
+				<div id="right_pic_menu_right" class="right_menu_right">
+					<ul>
+						<li><a href="<?=$pageviews?>&v=member">用户查找</a></li>
+						<li><a href="<?=$pageviews?>&v=type">分类查找</a></li>
+						<li><a href="<?=$pageviews?>&v=tag">标签查找</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="right_pic_list">
+				<ul class="clearfix">
+					<?php
+					if (count($data['piclist'])){
+						foreach ($data['piclist'] as $k => $v) {
+							?>
+							<li>
+								<div class="right_pic_list_src">
+									<a href="<?=$pageviews?>&v=picIn&pid=<?=$v['pic_id']?>"><img src="<?=$v['pic_ssrc']?>"/></a>
+								</div>
+								<div class="right_pic_list_info">
+									<h3><a href="<?=$pageviews?>&v=picIn&pid=<?=$v['pic_id']?>"><?=$v['pic_name']?></a></h3>
+									<div>
+										<span class="author"><a href="<?=$pageviews?>&v=memberIn&mid=<?=$v['m_id']?>"><img src="<?=$v['m_head']?>" width="30" height="30"/></a></span>
+										<span class="info">
+											<span class="times"><?=$v['alltimes']?></span>
+											<span class="grade"><?=$v['allgrade']?></span>
+											<span class="grades"><?=$v['allgrades']?></span>
+										</span>
+									</div>
+								</div>
+								<div class="right_pic_list_menu">
+									<?php
+									if(isset($_GET['fid'])){
+										?>
+										<a href="<?=$pageviews?>&v=memberFavoriteDel&mid=<?=$_GET['fid']?>&pid=<?=$v['pic_id']?>" onclick="if(confirm('确实取消收藏-<?=$v['pic_name']?>-作品吗?')){return true;}else{return false;}" class="r">取消收藏</a>
+										<?php
+									}else{
+										$isshow_str = $v['pic_isshow']==1 ? '取消审核' : '审核';
+										?>
+										<a href="<?=$pageviews?>&v=picIsShow&pid=<?=$v['pic_id']?>&isshow=<?=$v['pic_isshow']?>" onclick="if(confirm('确实要<?=$isshow_str?>-<?=$v['pic_name']?>-作品吗?')){return true;}else{return false;}" class="l"><?=$isshow_str?></a>
+										<a href="<?=$pageviews?>&v=picDel&pid=<?=$v['pic_id']?>" onclick="if(confirm('确实要删除-<?=$v['pic_name']?>-作品吗?')){return true;}else{return false;}" class="r">删除</a>
+										<?php
+									}
+									?>
+								</div>
+							</li>
+							<?php
+						}
+					}else{
+						echo '<h3 style="text-algin:center; font-size: 24px;">无查询结果</h3>';
+					}
+					?>
+				</ul>
+			</div>
+			<div class="pages clearfix">
+				<?=$data['pages']?>
+			</div>
+		</div>
+		<script type="text/javascript" defer="defer">
+			$(function($) {
+				AutoMargin('#right_pic_list ul');
+				$(window).resize(function(){
+					AutoMargin('#right_pic_list ul');
+				});
+			});
+			$('#right_pic_list ul li').hover(function () {
+				$(this).find('.right_pic_list_menu').slideDown(300);
+			},function () {
+				$(this).find('.right_pic_list_menu').slideUp(300);
+			});
+			imgAutoWH('.right_pic_list_src img',244);
+		</script>

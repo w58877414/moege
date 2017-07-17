@@ -1,0 +1,201 @@
+<div id="right_member_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_member_in">
+        <div id="right_member_inL">
+            <div class="right_member_inL_head">
+                <a onclick="openMark('#memberupdhead')">
+                    <img src="<?=$data['m_info']['m_head']?>" width="100" height="100"/>
+                    <span>修改头像</span>
+                </a>
+            </div>
+            <div class="right_member_inL_box">
+                <h3 class="member_in_title">关注的用户</h3>
+                <ul class="clearfix">
+                    <?php
+                    if (count($data['m_follow'])){
+                        foreach ($data['m_follow'] as $k => $v) {
+                            ?>
+                            <li><a href="<?=$pageviews?>&v=memberIn&mid=<?=$v['m_id']?>" title="<?=$v['m_nickname']?>"><img src="<?=$v['m_head']?>" alt="<?=$v['m_nickname']?>" width="36" height="36"/></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<h3 style="font-size: 14px; padding-left: 4px; font-weight: normal;">无关注用户</h3>';
+                    }
+                    ?>
+                </ul>
+                <span><a href="<?=$pageviews?>&v=member&fid=<?=$data['m_info']['m_id']?>">more+</a></span>
+            </div>
+            <div class="right_member_inL_list">
+                <h3 class="member_in_title">参加的群组</h3>
+                <ul class="clearfix">
+                    <?php
+                    if (count($data['m_group'])){
+                        foreach ($data['m_group'] as $k => $v) {
+                            ?>
+                            <li><a href="<?=$pageviews?>&v=groupIn&gid=<?=$v['group_id']?>" title="<?=$v['group_name']?>"><?=$v['group_name']?></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<h3 style="font-size: 14px; padding-left: 4px; font-weight: normal;">无参加群组</h3>';
+                    }
+                    ?>
+                </ul>
+                <span><a href="<?=$pageviews?>&v=group&mid=<?=$data['m_info']['m_id']?>">more+</a></span>
+            </div>
+        </div>
+        <div id="right_member_inR">
+            <div class="right_member_inR_info">
+                <h3 class="member_in_title">个人资料</h3>
+                <form action="<?=$pageviews?>&v=memberUpd" name="member_info" method="post">
+                <ul>
+                    <input type="hidden" name="m_id" value="<?=$data['m_info']['m_id']?>"/>
+                    <input type="hidden" name="m_oname" value="<?=$data['m_info']['m_name']?>"/>
+                    <li><span>用户名：</span><input type="text" name="m_name" value="<?=$data['m_info']['m_name']?>"/></li>
+                    <li><span>创建时间：</span><input type="text" name="m_ctime" value="<?=$data['m_info']['m_ctime']?>" readonly/></li>
+                    <li><span>昵称：</span><input type="text" name="m_nickname" value="<?=$data['m_info']['m_nickname']?>"/></li>
+                    <li><span>性别：</span>
+                        <?php
+                            foreach ($this->gset['gender_arr'] as $k=>$v){
+                                $checked = ($data['m_info']['m_gender'] == $v)?'checked':'';
+                                echo '<input type="radio" name="m_gender" value="'.$v.'" '.$checked.'/>'.$v.'&nbsp;&nbsp;&nbsp;';
+                            }
+                        ?>
+                    </li>
+                    <li><span>生日：</span><input type="date" name="m_birthday" value="<?=$data['m_info']['m_birthday']?>"/></li>
+                    <li><span>职业：</span><input type="text" name="m_job" value="<?=$data['m_info']['m_job']?>"/></li>
+                    <li><span>位置/区域：</span><input type="text" name="m_address" value="<?=$data['m_info']['m_address']?>"/></li>
+                    <li><span>邮箱：</span><input type="email" name="m_email" value="<?=$data['m_info']['m_email']?>"/></li>
+                    <li><span>QQ：</span><input type="text" name="m_qq" value="<?=$data['m_info']['m_qq']?>"/></li>
+                    <li><span>作画工具：</span><input type="text" name="m_tool" value="<?=$data['m_info']['m_tool']?>"/></li>
+                    <li><span>个性标签：</span><input type="text" name="m_tag" value="<?=$data['m_info']['m_tag']?>"/></li>
+                    <li class="long_info">自我简介：<textarea name="m_info"><?=$data['m_info']['m_info']?></textarea></li>
+                    <li class="menu_info">快捷操作：
+                        <a onclick="openUpd()" id="member_info_upd">修改个人信息</a>
+                        <a onclick="openMark('#memberupdpass')">修改密码</a>
+                        <a href="<?=$pageviews?>&v=memberClear&mid=<?=$data['m_info']['m_id']?>" onclick="if(confirm('此操作会删除-<?=$data['m_info']['m_name']?>-用户下的所有作品，是否确定')){return true;}else{return false;}">清空作品</a>
+                        <a href="<?=$pageviews?>&v=memberDel&mid=<?=$data['m_info']['m_id']?>" onclick="if(confirm('确实要删除-<?=$data['m_info']['m_name']?>-用户吗')){return true;}else{return false;}">销户</a>
+                    </li>
+                </ul>
+                </form>
+            </div>
+            <script>
+                if (document.cookie.indexOf('member_upd_return') >= 0){
+                    $("#member_info_upd").attr("onclick","member_info.submit()");
+                    $("#member_info_upd").text("确认修改");
+                    $("#member_info_upd").after('<a href="<?=$pageviews?>&v=memberUpdDis">取消修改</a>');
+                }else{
+                    $(".right_member_inR_info input").attr("disabled", true);
+                    $(".right_member_inR_info textarea").attr("disabled", true);
+                }
+                function openUpd() {
+                    $(".right_member_inR_info input").attr("disabled", false);
+                    $(".right_member_inR_info textarea").attr("disabled", false);
+                    $("#member_info_upd").attr("onclick","member_info.submit()");
+                    $("#member_info_upd").text("确认修改");
+                    $("#member_info_upd").after('<a href="<?=$pageviews?>&v=memberUpdDis">取消修改</a>');
+                }
+            </script>
+            <div class="right_member_inR_pic">
+                <h3 class="member_in_title">已投稿/分享的作品</h3>
+                <ul class="clearfix">
+                    <?php
+                    if (count($data['m_piclist'])){
+                        foreach ($data['m_piclist'] as $k => $v) {
+                            ?>
+                            <li><a href="<?=$pageviews?>&v=picIn&pid=<?=$v['pic_id']?>" title="<?=$v['pic_name']?>"><img src="<?=$v['pic_ssrc']?>" alt="<?=$v['pic_name']?>"/></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<h3 style="text-align:center; font-size: 24px;">该用户暂无作品</h3>';
+                    }
+                    ?>
+                </ul>
+                <span><a href="<?=$pageviews?>&v=pic&mid=<?=$data['m_info']['m_id']?>">浏览更多</a></span>
+            </div>
+            <div class="right_member_inR_pic">
+                <h3 class="member_in_title">收藏的作品</h3>
+                <ul class="clearfix">
+                    <?php
+                    if (count($data['m_favorite'])){
+                        foreach ($data['m_favorite'] as $k => $v) {
+                            ?>
+                            <li><a href="<?=$pageviews?>&v=picIn&pid=<?=$v['pic_id']?>" title="<?=$v['pic_name']?>"><img src="<?=$v['pic_ssrc']?>" alt="<?=$v['pic_name']?>"/></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<h3 style="text-align:center; font-size: 24px;">该用户暂无收藏作品</h3>';
+                    }
+                    ?>
+                </ul>
+                <span><a href="<?=$pageviews?>&v=pic&fid=<?=$data['m_info']['m_id']?>">浏览更多</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" defer="defer">
+    $(function($) {
+        AutoMargin('.right_member_inR_pic ul');
+        $(window).resize(function(){
+            AutoMargin('.right_member_inR_pic ul');
+        });
+    });
+    imgAutoWH('.right_member_inR_pic ul li img',200);
+</script>
+<div id="mask"></div>
+<div id="memberupdpass" class="popup_box">
+    <form action="<?=$pageviews?>&v=memberUpdPass" method="post" name="memberUpdPass">
+        <div class="boxtitle">- 密码修改 -</div>
+        <input name="mid" value="<?=$data['m_info']['m_id']?>" type="hidden">
+        <div class="boxrow"><span>输入密码：</span><input name="mpass1" value="" type="password"></div>
+        <div class="boxrow"><span>再次输入：</span><input name="mpass2" value="" type="password"></div>
+        <div class="boxrow"><a onclick="memberupdpasssubmit()">修改</a><a onclick="closeMark('#memberupdpass')">取消</a></div>
+    </form>
+</div>
+<div id="memberupdhead" class="popup_box">
+    <form action="<?=$pageviews?>&v=memberUpdhead" method="post" enctype="multipart/form-data" name="memberUpdhead">
+        <div class="boxtitle">- 头像修改 -</div>
+        <input name="mid" value="<?=$data['m_info']['m_id']?>" type="hidden">
+        <input name="headS" value="160" type="hidden">
+        <input name="headW" value="" type="hidden">
+        <input name="headH" value="" type="hidden">
+        <input name="headT" value="" type="hidden">
+        <input name="headL" value="" type="hidden">
+        <div class="boxrow"><span>上传头像：</span><input name="mhead1" type="file" onchange="changeShowLoad(this)"></div>
+        <div class="boxmsg">注意：<?=$this->gset['head_sizeinfo']?></div>
+        <div class="boxmsg"><?=$this->gset['img_typeinfo']?></div>
+        <div class="imghead">
+            <div class="imghead_b"></div>
+            <div class="imghead_h"><img src=''></div>
+            <div class="imghead_f"><img src=''></div>
+        </div>
+        <div class="boxrow"><a onclick="memberUpdheadSub()">上传</a><a onclick="closeMark('#memberupdhead')">取消</a></div>
+    </form>
+</div>
+<script type="text/javascript">
+    function memberupdpasssubmit() {
+        mpass1 = memberUpdPass.mpass1.value;
+        mpass2 = memberUpdPass.mpass2.value;
+        if(mpass1 == mpass2){
+            memberUpdPass.submit();
+        }else{
+            alert('两次密码输入不一致');
+        }
+    }
+    function changeShowLoad(file) {
+        showUploadImg(file,'#memberupdhead .imghead img',160);
+        imgAutoWHmax('#memberupdhead .imghead img',160);
+        $('#memberupdhead .imghead img').load(function () {
+            changeImgsize('#memberupdhead .imghead');
+            moveImgposition('#memberupdhead .imghead');
+        }).each(function () {
+            if(this.complete) $(this).load();
+        });
+    }
+    function memberUpdheadSub() {
+        $('#memberupdhead input[name="headW"]').attr('value',parseFloat($('#memberupdhead .imghead img').css('width')));
+        $('#memberupdhead input[name="headH"]').attr('value',parseFloat($('#memberupdhead .imghead img').css('height')));
+        $('#memberupdhead input[name="headT"]').attr('value',parseFloat($('#memberupdhead .imghead img').css('top')));
+        $('#memberupdhead input[name="headL"]').attr('value',parseFloat($('#memberupdhead .imghead img').css('left')));
+        $('#memberupdhead form').submit();
+    }
+</script>

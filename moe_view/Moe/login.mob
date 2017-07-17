@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title><?=$data['title']?></title>
+		<link rel="stylesheet" type="text/css" href="<?=$pageurl?>/css/style.css"/>
+	</head>
+	<body>
+		<div class="login">
+			<div class="login_logo">
+				<a href="./"><img src="<?=$pageurl?>/img/logo.png"/></a>
+			</div>
+			<div class="login_form">
+				<div class="login_error"></div>
+				<form action="?v=logging" method="post">
+					<ul>
+						<li><span>用户名：</span><input type="text" name="username" id="username" value="" placeholder="请输入用户名"/></li>
+						<li><span>密码：</span><input type="password" name="pass" id="pass" value="" placeholder="请输入密码"/></li>
+						<li><input type="submit" value="登陆" onclick="return login_submit();"/></li>
+					</ul>
+				</form>
+			</div>
+			<div class="login_other">
+				<a href="">忘记密码</a> | <a href="?v=signup">立即注册</a>
+			</div>
+		</div>
+		<div class="login_bg"></div>
+		<script type="text/javascript" src="<?=$pageurl?>/js/jquery.min.js"></script>
+		<script type="text/javascript" src="<?=$pageurl?>/js/style.js"></script>
+		<script type="text/javascript">
+			function login_submit() {
+				username = $('#username').val().replace(/\s/g, "");
+				pass = $('#pass1').val().replace(/\s/g, "");
+				$('#username').val(username);
+				$('#pass').val(pass1);
+				if(username==''){
+					$('.login_error').text('用户名不能为空!');
+					return false;
+				}else if(pass==''){
+					$('.login_error').text('密码不能为空!');
+					return false;
+				}
+				return true;
+			}
+		</script>
+	</body>
+</html>

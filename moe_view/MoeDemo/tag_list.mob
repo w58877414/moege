@@ -1,0 +1,94 @@
+<div id="right_tag_main" class="right_main_main">
+	<div class="right_title"><h1><?=$data['title']?></h1></div>
+	<div id="right_tag_menu" class="right_menu_main">
+		<div id="right_tag_menu_left" class="right_menu_left">
+			<form action="" method="get">
+				<ul class="clearfix">
+					<?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+					<?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+					<?=$_GET['o']?'<input type="hidden" name="o" value="'.$_GET['o'].'"/>':'';?>
+					<?=$_GET['date']?'<input type="hidden" name="date" value="'.$_GET['date'].'"/>':'';?>
+					<li><a onclick="openMark('#tagaddbox')">添加标签</a></li>
+					<li><a href="<?=$pageviews?>&v=tag">全部最新</a></li>
+					<li><a href="<?=$this->model->self_urlget_del('o','p')?>">最新</a></li>
+                    <li><a href="<?=$this->model->self_urlget_replace('o', 'num', 'p')?>">最热门</a></li>
+					<li><select>
+							<option value="<?=$this->model->self_urlget_del('date','p')?>">日期筛选列表</option>
+							<?php
+							if (count($data['datelist'])){
+								foreach ($data['datelist'] as $k => $v) {
+									$select = '';
+									if ($v[0] == $_GET['date']){
+										$select = ' selected';
+									}
+									echo '<option value="'.$this->model->self_urlget_replace('date', $v[0], 'p').'"'.$select.'>'.$this->model->date_format_str($v[0],'Y年m月').'</option>';
+								}
+							}else{
+								echo '<option value="0">无时间数据</option>';
+							}
+							?>
+						</select></li>
+					<li><input type="text" name="search" id="search" value=""/><input type="submit" value="筛选"/></li>
+				</ul>
+			</form>
+			<script type="text/javascript">
+				$('#right_tag_menu_left').find('select').change(function(){
+						window.location.href=$(this).val();
+					}
+				);
+			</script>
+		</div>
+	</div>
+	<div id="right_tag_list">
+		<div class="right_remind">提示：点击标签名可查看此标签下的作品</div>
+        <ul class="clearfix">
+            <?php
+            if (count($data['taglist'])){
+                foreach ($data['taglist'] as $k => $v) {
+                    ?>
+                    <li>
+                        <a class="tagId"><span>ID:<?=$v['tag_id']?></span></a>
+                        <a href="<?=$pageviews?>&v=pic&tagid=<?=$v['tag_id']?>" onclick="if(<?=$v['tag_num']?>){return true;}else{alert('暂无作品使用该标签');return false;}" class="tagName"><span><?=$v['tag_name']?></span></a>
+                        <a class="tagNum"><span><?=$v['tag_num']?></span></a>
+                        <a onclick="tagupdclick('<?=$v['tag_id']?>','<?=$v['tag_name']?>')" class="tagUpd"><span>修改</span></a>
+                        <a href="<?=$pageviews?>&v=tagClear&tagid=<?=$v['tag_id']?>" onclick="if(confirm('确实要清空-<?=$v['tag_name']?>-标签下的作品应用吗?')){return true;}else{return false;}" class="tagClear"><span>清空</span></a>
+                        <a href="<?=$pageviews?>&v=tagDel&tagid=<?=$v['tag_id']?>" onclick="if(confirm('确实要删除-<?=$v['tag_name']?>-标签吗?')){return true;}else{return false;}" class="tagDel"><span>X</span></a>
+                    </li>
+                    <?php
+                }
+            }else{
+                echo '<h3 style="text-algin:center; font-size: 24px;">无查询结果</h3>';
+            }
+            ?>
+		</ul>
+	</div>
+	<div class="pages clearfix">
+		<?=$data['pages']?>
+	</div>
+</div>
+<script type="text/javascript">
+	AutoMargin();
+</script>
+<div id="mask"></div>
+<div id="tagupdbox" class="popup_box">
+	<form action="<?=$pageviews?>&v=tagUpd" method="post" name="tagupd">
+		<div class="boxtitle">- 标签名称修改 -</div>
+		<input name="tagid" value="" type="hidden">
+		<div class="boxrow"><input name="tagname" value="" type="text"></div>
+		<div class="boxrow"><a onclick="tagupd.submit();">修改</a><a onclick="closeMark('#tagupdbox')">取消</a></div>
+	</form>
+</div>
+<div id="tagaddbox" class="popup_box">
+	<form action="<?=$pageviews?>&v=tagAdd" method="post" name="tagadd">
+		<div class="boxtitle">- 新增标签 -</div>
+		<div class="boxrow"><input name="tagname" value="" type="text"></div>
+		<div class="boxrow"><a onclick="tagadd.submit();">添加</a><a onclick="closeMark('#tagaddbox')">取消</a></div>
+	</form>
+</div>
+<script type="text/javascript">
+	function tagupdclick(tagid,tagname){
+		openMark('#tagupdbox');
+		$("#tagupdbox input[name='tagid']").val(tagid);
+		$("#tagupdbox input[name='tagname']").val(tagname);
+	}
+</script>

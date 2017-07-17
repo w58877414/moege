@@ -1,0 +1,88 @@
+<div id="right_index_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_index_in">
+		<div class="right_index_in_notice">
+            <ul>
+                <li>网站最新公告：<a href="?v=notice&nid=<?=$data['notice']['id']?>" target="_blank"><?=$data['notice']['title']?></a></li>
+            </ul>
+        </div>
+        <div class="right_index_in_overview">
+            <div class="index_in_title">概况</div>
+            <ul>
+                <li>格萌网现总共拥有：</li>
+                <li><a href="<?=$pageviews?>&v=pic"><?=$data['overview']['pic_num']?></a>幅作品</li>
+                <li><a href="<?=$pageviews?>&v=tag"><?=$data['overview']['tag_num']?></a>个标签</li>
+                <li><a href="<?=$pageviews?>&v=type"><?=$data['overview']['type_num']?></a>个分类</li>
+                <li><a href="<?=$pageviews?>&v=group"><?=$data['overview']['group_num']?></a>个群组</li>
+                <li><a href="<?=$pageviews?>&v=member"><?=$data['overview']['member_num']?></a>个会员</li>
+                <li><a href="<?=$pageviews?>&v=admin"><?=$data['overview']['admin_num']?></a>个管理员</li>
+            </ul>
+        </div>
+        <div class="right_index_in_action">
+            <div>
+                <div class="index_in_title">作品动态</div>
+                <ul>
+                <?php
+                    if (count($data['action']['pic'])){
+                        foreach ($data['action']['pic'] as $k => $v) {
+                        ?>
+                    <li><span><?=$this->date_format_str($v['pic_ctime'],'m-d H:i')?></span><a href="<?=$pageviews?>&v=pic&pid=<?=$v['pic_id']?>"><?=$v['pic_name']?></a></li>
+                        <?php
+                        }
+                    }else{
+                        echo '<li>暂无内容</li>';
+                    }
+                ?>
+                </ul>
+            </div>
+            <div>
+                <div class="index_in_title">最新标签</div>
+                <ul>
+                    <?php
+                    if (count($data['action']['tag'])){
+                        foreach ($data['action']['tag'] as $k => $v) {
+                            ?>
+                            <li><span><?=$this->date_format_str($v['tag_ctime'],'m-d H:i')?></span><a href="<?=$pageviews?>&v=tag"><?=$v['tag_name']?></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<li>暂无内容</li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div>
+                <div class="index_in_title">最新群组</div>
+                <ul>
+                    <?php
+                    if (count($data['action']['group'])){
+                        foreach ($data['action']['group'] as $k => $v) {
+                            ?>
+                            <li><span><?=$this->date_format_str($v['group_ctime'],'m-d H:i')?></span><a href="<?=$pageviews?>&v=group&groupid=<?=$v['group_id']?>"><?=$v['group_name']?></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<li>暂无内容</li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div>
+                <div class="index_in_title">最新注册会员</div>
+                <ul>
+                    <?php
+                    if (count($data['action']['member'])){
+                        foreach ($data['action']['member'] as $k => $v) {
+                            ?>
+                            <li><span><?=$this->date_format_str($v['m_ctime'],'m-d H:i')?></span><a href="<?=$pageviews?>&v=member&mid=<?=$v['m_id']?>"><?=$v['m_name']?></a></li>
+                            <?php
+                        }
+                    }else{
+                        echo '<li>暂无内容</li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

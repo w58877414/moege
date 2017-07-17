@@ -1,0 +1,26 @@
+<div id="main">
+    <div class="title"><span>用户列表</span></div>
+    <div class="memberlist">
+        <?php
+        if(count($data['memberlist'])>0){
+            foreach ($data['memberlist'] as $k => $v){
+                ?>
+        <a href="<?=$pageviews?>&v=member&mid=<?=$v['m_id']?>">
+            <div class="mhead"><img src="<?=$v['m_head']?>"></div>
+            <div class="minfo">
+                <div class="mnickname"><?=$v['m_nickname']?></div>
+                <div class="mother">作品数：<span><?=$v['pic_num']?></span>粉丝：<span><?=$v['fans_num']?></span></div>
+                <div class="mdes"><?=$v['m_info']?></div>
+            </div>
+        </a>
+                <?php
+            }
+        }else{
+            echo '<h3>无用户结果</h3>';
+        }
+        ?>
+    </div>
+    <div class="list_page">
+        <?=$data['pages'] ?>
+    </div>
+</div>

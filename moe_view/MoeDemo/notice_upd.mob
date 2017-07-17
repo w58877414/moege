@@ -1,0 +1,30 @@
+<div id="right_notice_main" class="right_main_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_notice_form">
+        <form action="" name="noticeupd" id="noticeupd" method="post">
+            <div class="formline"><span>公告标题：</span><input type="text" name="title" id="title" value="<?=$data['notice']['title']?>"/></div>
+            <div class="formline"><span>公告时间：</span><input type="datetime" name="ctime" id="ctime" value="<?php echo $data['notice']['ctime']?:date('Y-m-d H:i:s');?>"/></div>
+            <div class="formline"><span>公告内容：</span><a onclick="noticesub()" class="formbtn">发布</a></div>
+            <script id="editor" class="formtext" type="text/plain"></script>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="moe_ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="moe_ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="moe_ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+    ue.ready(function () {
+        ue.setContent('<?=html_entity_decode($data['notice']['article'])?>');
+    });
+    function noticesub() {
+        if($('#noticeupd').find('input').val()==""){
+            alert('公告标题不得为空');
+        }else if(ue.getContent()==""){
+            alert('公告内容不得为空');
+        }else {
+            noticeupd.submit();
+        }
+    }
+</script>

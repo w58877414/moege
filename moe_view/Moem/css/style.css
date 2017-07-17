@@ -1,0 +1,224 @@
+*{ margin: 0; padding: 0; box-sizing: inherit; word-wrap:break-word; word-break: break-all; box-sizing: border-box;}
+html,body{ font-size: 86%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background:#eee; color:#444; box-sizing: border-box;}
+@media only screen and (min-width: 650px){ html,body{ font-size: 87.5%;}}
+@media only screen and (min-width: 1000px){ html,body{ font-size: 100%;}}
+body{ overflow-y: auto;}
+h1,h2,h3,h4,h5,h6,ul,li{ list-style-type: none;}
+a,a:link,a:visited{ color: #00aadd; text-decoration: none; cursor: pointer;}
+a:hover{ color: #f26d8d;}
+*:hover{ transition: color .6s linear, background .6s linear, padding .6s linear, border .6s linear;
+    -webkit-transition: color .6s linear, background .6s linear, padding .6s linear, border .6s linear;
+    -moz-transition: color .6s linear, background .6s linear, padding .6s linear, border .6s linear;
+    -o-transition: color .6s linear, background .6s linear, padding .6s linear, border .6s linear;
+    -ms-transition: color .6s linear, background .6s linear, padding .6s linear, border .6s linear;}
+.clearfix:after{content:'\20'; display:block; height:0; clear:both; visibility: hidden;}
+.clearfix{zoom:1;}
+/* 登陆注册 */
+#login{ width: 90%; margin: 1rem auto 0 auto;}
+#login .logo{ text-align: center;}
+#login .logo img{ width: 60%; height: auto;}
+#login form div{ height: 3rem; line-height: 3rem; margin: 1rem auto;}
+#login form div span{ display: inline-block; width: 24%; height: 3rem; line-height: 3rem; font-size: 1.4rem; font-weight: bolder; text-align: right;}
+#login form div input{ display: inline-block; width: 60%; height: 3rem; line-height: 3rem; font-size: 1.2rem; border: .1rem solid #aaa; border-radius: 1rem; box-shadow: 0 0 .2rem 0 #aaa;}
+#login form div a{ display: inline-block; width: 7.6rem; height: 3rem; line-height: 3rem; font-size: 1.4rem; font-weight: bolder; text-align: center; color: #fff; border-radius: 1rem; margin: 0 2rem;}
+#login form div #imgcode{ width: 24%;}
+#login form div #imgcodeimg{ width: 9rem; height: 2.7rem; border: .1rem solid #888; vertical-align: bottom; margin-bottom: .1rem;}
+#login form .btn{ text-align: center;}
+#login form div .s{ background-color: #00aadd; box-shadow: .1rem .1rem .2rem .1rem #006e8f;}
+#login form div .b{ background-color: #f26d8d; box-shadow: .1rem .1rem .2rem .1rem #904154;}
+
+/*分页*/
+.list_page{ height: 2rem; line-height: 2rem; text-align: center; padding-top: .5rem; margin: .5rem auto 2rem auto;}
+.list_page span{ display: inline-block; height: 2rem; line-height: 2rem; margin: 0 .5rem;}
+.list_page span > *{ display: block; min-width: 2rem; height: 2rem; line-height: 2rem; text-align: center; padding: 0 .1rem; border: .1rem dashed #00AADD; border-radius: .5rem;}
+.list_page .now > a{ color: #f26d8d; border: .1rem dashed #f26d8d;}
+.list_page span > select{ display: inline-block; text-align: center}
+
+/* 固定头部及菜单 */
+#header{ position: fixed; z-index: 100; top: 0; left: 0; width: 100%; box-shadow: 0 1px 8px 0 #aaa;}
+#header .top{ height: 3rem; line-height: 3rem; font-size: 1.3rem; background-color: #00aadd;}
+#header .top a{ color: #fff;}
+#header .top .l{ display: inline-block; width: 60%; text-align: left; float: left;}
+#header .top .l .menu{ display: inline-block; width: 3rem; height: 3rem; text-align: center;}
+#header .top .l .menu i{ display: inline-block; position: relative; top: -11px; width: 18px; height: 2px; background-color: #eee;}
+#header .top .l .menu i:before{ position: absolute; top: 6px; left: 0; width: 18px; height: 2px; background-color: #eee; content: ''}
+#header .top .l .menu i:after{ position: absolute; top: 12px; left: 0; width: 18px; height: 2px; background-color: #eee; content: ''}
+#header .top .l .title{ display: inline-block; padding-left: 1.8rem; text-shadow: 0 0 .1rem #fff; }
+#header .top .r{ display: inline-block; width: 40%; text-align: right; float: right;}
+#header .top .r a{ display: inline-block; width: 3rem; height: 3rem; text-align: center; opacity: .7;}
+#header .top .r .on{ opacity: 1;}
+#header .top .r .top_home{ background: url("../img/top_home.png") no-repeat left top; background-size: contain;}
+#header .top .r .top_search{ background: url("../img/top_search.png") no-repeat left top; background-size: contain;}
+#header .type{ height: 3.6rem; padding-top: .3rem; padding-bottom: .3rem; background-color: #fff;}
+#header .type form > div{ position: relative; float: left; height: 2.2rem; color: #00aadd; line-height: 2.2rem; text-align: center; border: .1rem solid #00aadd; border-radius: 1.4rem; margin-top: .4rem;}
+#header .type form > div select { position: absolute; left: 0; top: 0; width: 100%; height: 2.2rem; opacity: 0;}
+#header .type form .col1{ width: 76%; margin-left: 12%; margin-right: 12%;}
+#header .type form .col2{ width: 38%; margin-left: 6%; margin-right: 6%;}
+#header .search{ height: 3rem; line-height: 3rem; background-color: #eee;}
+#header .search form{ width: 80%; height: 3rem; line-height: 3rem; margin: 0 auto; background-color: transparent;}
+#header .search form input{ float: left; height: 2.8rem; line-height: 2.8rem; border: 0; background-color: transparent;}
+#header .search form input[type='text']{ width: 80%; border-bottom: 1px solid #888;}
+#header .search form input[type='submit']{ width: 20%; font-size: 1.4rem;}
+#header .login{ height: 5rem; line-height: 5rem; background-color: #2D353E; padding: .5rem 0; }
+#header .login .notice{ width: 100%; height: 1rem; line-height: 1rem; font-size: .8rem; color: #aaa; text-align: center; margin-bottom: .5rem;}
+#header .login > a{ display: inline-block; float: left; width: 30%; height: 2.4rem; line-height: 2.4rem; color: #fff; font-size: 1.2rem; text-align: center; border-radius: .5rem;}
+#header .login .loging{ margin: 0 4% 0 16%; background-color: #00aadd;}
+#header .login .signup{ margin: 0 16% 0 4%; background-color: #f26d8d;}
+/* 界面左侧栏 */
+#left{ position: fixed; z-index: 110; left: -24rem; top: 0; width: 24rem; height: 100%; background-color: #eee; overflow-y: auto; box-shadow: 1px 0 1rem 0 #888;}
+#left .leftback{ position:absolute; right: 0; top: .5rem; width: 1rem; height: 1rem; border: 1rem solid transparent; border-right: 2rem solid #eee;}
+#left .user,#left .unuser{ height: 7rem; background-color: #2D353E; padding: 1rem;}
+#left .unuser > a{ display: inline-block; float: left; width: 8.8rem; height: 2.2rem; line-height: 2.2rem; color: #fff; font-size: 1.1rem; text-align: center; margin: .9rem 1.1rem 0 1.1rem; border-radius: .5rem;}
+#left .unuser .loging{ background-color: #00aadd;}
+#left .unuser .signup{ background-color: #f26d8d;}
+#left .user a{ display: block; width: 100%; height: 100%; color: #fff;}
+#left .user a > div{ display: inline-block; float: left; height: 5rem;}
+#left .user a .head{ width: 5rem;}
+#left .user a .head img{ width: 5rem; height: 5rem; border-radius: 50%;}
+#left .user a .nickname{ display: inline-block; float: left; width: 17rem; line-height: 2.5rem; padding-left: 1.1rem; font-size: 1.2rem;}
+#left .menu{}
+#left .menu ul{ padding: .9rem .5rem .9rem .9rem; border-top: 1px solid #ccc;}
+#left .menu ul li{ height: 3rem; line-height: 3rem;}
+#left .menu ul li a{ display: block; height: 3rem; line-height: 3rem; font-size: 1.1rem; color: #666; padding-left: 3rem;}
+
+
+/* 内容 */
+#main{ position: relative; z-index: 90; top: 3rem; width: 100%; overflow-y: auto;}
+#main .title{ height: 2.7rem; padding: .5rem 1rem .2rem .5rem; margin-bottom: 5px;}
+#main .title span{ display: inline-block; padding: 0 1rem 0 2.2rem; height: 2rem; line-height: 2rem; font-size: 1.2rem; font-weight: bolder; background-color: #fff; box-shadow: 0 0 0.8rem 0 #aaa; border-radius: 0 .4rem 1.5rem 0; background: url("../img/title.png") no-repeat left top; background-size: contain;}
+#main .title a{ float: right; height: 2rem; line-height: 2rem;}
+#main .title .new{ background: url("../img/title.png") no-repeat left top; background-size: contain;}
+/* 瀑布流设置（CSS3，不支持IE10以下） */
+@media only screen and (max-width: 200px) {
+    .imglist{ width: 100%;}
+}
+@media only screen and (min-width: 200px) and (max-width: 400px) {
+    .imglist{ -moz-column-count: 2; -webkit-column-count: 2; column-count: 2;}
+}
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+    .imglist{ -moz-column-count: 3; -webkit-column-count: 3; column-count: 3;}
+}
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+    .imglist{ -moz-column-count: 4; -webkit-column-count: 4; column-count: 4;}
+}
+@media only screen and (min-width: 800px) and (max-width: 1024px) {
+    .imglist{ -moz-column-count: 5; -webkit-column-count: 5; column-count: 5;}
+}
+@media only screen and (min-width: 1025px) and (max-width: 1280px) {
+    .imglist{ -moz-column-count: 6; -webkit-column-count: 6; column-count: 6;}
+}
+@media only screen and (min-width: 1281px) and (max-width: 1440px) {
+    .imglist{ -moz-column-count: 7; -webkit-column-count: 7; column-count: 7;}
+}
+@media only screen and (min-width: 1441px) {
+    .imglist{ -moz-column-count: 8; -webkit-column-count: 8; column-count: 8;}
+}
+.imglist{ -webkit-column-gap: .1rem; -moz-column-gap: .1rem; column-gap: .1rem; overflow-y: auto; border-bottom: .1rem solid #666;}
+.imglist a{ position: relative; display: block; width: 100%; padding: .2rem .2rem 0 .2rem; border: .1rem solid #666;}
+.imglist a img{ width:100%;}
+.imglist a span{ position: absolute; bottom: .4rem; left: .4rem; color: #fff; text-shadow: 0 0 .5rem #000; }
+.taglist{}
+.taglist a{ display: inline-block; height: 1.4rem; line-height: 1.4rem; font-size: 1rem; padding: 0 .8rem; margin: 0 1rem 1rem 1rem; background-color: #fff; border: .1rem solid #00aadd; border-radius: 0 .7rem .7rem 0; }
+@media only screen and (min-width: 680px) {
+    .grouplist{ -moz-column-count: 2; -webkit-column-count: 2; column-count: 2; -webkit-column-gap: 1rem; -moz-column-gap: 1rem; column-gap: 1rem;}
+    .memberlist{ -moz-column-count: 2; -webkit-column-count: 2; column-count: 2; -webkit-column-gap: 1rem; -moz-column-gap: 1rem; column-gap: 1rem;}
+}
+.grouplist{ padding: 0 .5rem;}
+.grouplist a{ display: block; padding: .5rem; margin-bottom: 1rem; border: .1rem solid #aaa; border-radius: .5rem; box-shadow: 0 0 .8rem 0 #ccc; background-color: #fff;}
+.grouplist a .gname{ height: 1.4rem; line-height: 1.4rem; font-size: 1.2rem;}
+.grouplist a .gname span{ font-size: .6rem; color: #bbb;}
+.grouplist a .ginfo{ height: 1.4rem; line-height: 1.4rem; font-size: .8rem; color: #888;}
+.grouplist a .ginfo > span{ margin-right: 1rem;}
+.grouplist a p{ color: #888;}
+.memberlist{ padding: 0 .5rem;}
+.memberlist a{ position: relative; display: block; padding: .5rem; margin-bottom: 1rem; border: .1rem solid #aaa; border-radius: .5rem; box-shadow: 0 0 .8rem 0 #ccc; background-color: #fff;}
+.memberlist a .mhead{ position: absolute; left: .5rem; top: .5rem; width: 4.2rem; height: 4.2rem; border-radius: 50%;}
+.memberlist a .mhead img{ width: 4.2rem; height: 4.2rem; line-height: 4.2rem; border-radius: 50%;}
+.memberlist a .minfo{ padding-left: 5rem; min-height: 4.2rem;}
+.memberlist a .minfo .mnickname{ height: 1.4rem; line-height: 1.4rem; font-size: 1.2rem;}
+.memberlist a .minfo .mother{ height: 1.4rem; line-height: 1.4rem; font-size: .6rem; color: #aaa;}
+.memberlist a .minfo .mother span{ margin-right: 1rem;}
+.memberlist a .minfo .mdes{ color: #888;}
+
+.group{ padding: .5rem; margin-bottom: 1rem; border: .1rem solid #aaa; border-radius: .5rem; box-shadow: 0 0 .8rem 0 #ccc; background-color: #fff;}
+.group h2{ font-size: 1.4rem;}
+.group h2 span{ float: right; height: 1.2rem; line-height: 1.2rem; font-size: .8rem; color: #00aadd; font-weight: normal; border: .1rem dashed #00aadd; padding: 0 .5rem;}
+.group .info{ font-size: .8rem;}
+.group .info span{ color: #aaa; margin-left: 1rem;}
+.group_comment{ padding: .5rem; margin-bottom: 1rem; border: .1rem solid #aaa; border-radius: .5rem; box-shadow: 0 0 .8rem 0 #ccc; background-color: #fff;}
+
+.pic_top{ position: fixed; left: 0; top: 0; z-index: 100; width: 100%; height: 3rem; line-height: 3rem; background: transparent; padding:.5rem .5rem 0 .5rem;}
+.pic_top a{ display: inline-block; width: 2rem; height: 2rem; line-height: 2rem; text-align: center;}
+.pic_top .l{ float: left; background: url(../img/top_left.png) no-repeat center; background-size: contain; }
+.pic_top .r{ float: right;background: url(../img/top_right.png) no-repeat center; background-size: contain; }
+.pic_img{ width: 100%; height: auto;}
+.pic_img a{ width: 100%; height: auto;}
+.pic_img a img{ width: 100%; height: auto;}
+.pic_prevnext{ min-height: 1.4rem;  padding: 0 1rem;}
+.pic_prevnext > *{ display: inline-block; float: left; min-height: 1.4rem; padding: .5rem 0;}
+.pic_prevnext .l{ width: 35%; text-align: left;}
+.pic_prevnext .l:before{ content: "<<";}
+.pic_prevnext .m{ width: 30%; text-align: center; border-left: 1px solid #aaa; border-right: 1px solid #aaa; box-shadow: 0 0 .5rem 0 #aaa;}
+.pic_prevnext .r{ width: 35%; text-align: right;}
+.pic_prevnext .r:after{ content: ">>"}
+.pic_info{ margin-bottom: .4rem; padding-left: .4rem;}
+.pic_info h2{ height: 2rem; line-height: 2rem; font-size: 1.4rem; margin: .6rem 0;}
+.pic_info a{ display: inline-block; float: right; height: 1.6rem; line-height: 1.6rem; font-size: .6rem; font-weight: normal; border: .1rem solid #00aadd; border-radius: .3rem; padding: 0 .5rem;}
+.pic_info .pic_other{ height: 1.6rem; line-height: 1.6rem; font-size: .8rem; color: #666; margin: .5rem 0;}
+.pic_info .pic_other span{ display: inline-block; height: 1.6rem; line-height: 1.6rem; padding-left: 1.6rem; margin-right: .8rem; background-size: contain; background-repeat: no-repeat; background-position: left top;}
+.pic_info .pic_other .times{ background-image: url("../img/times.png");}
+.pic_info .pic_other .grade{ background-image: url("../img/grade.png");}
+.pic_info .pic_other .grades{ background-image: url("../img/grades.png");}
+.pic_info .pic_sinfo{ height: 1.2rem; line-height: 1.2rem; font-size: .8rem; color: #666; margin: .5rem 0;}
+.pic_info .pic_des{ margin: .5rem 0;}
+.pic_tag{ border-top: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: .4rem 0;}
+.pic_tag span{ display: inline-block; width: 1.6rem; height: 1.6rem; line-height: 1.6rem; background: url("../img/tag_before.png") no-repeat left top; background-size: contain; margin-left: .5rem;}
+.pic_tag a{ display: inline-block; font-size: 1rem; padding: .3rem .5rem; margin: 0 .5rem; border: .1rem solid #ccc; border-radius: 1rem; background-color: #fff;}
+.pic_member{ height: 5rem; line-height: 5rem; padding: .5rem .5rem;}
+.pic_member a{ height: 4rem; line-height: 4rem; font-size: 1.6rem; vertical-align: top;}
+.pic_member a img{ width: 4rem; height: 4rem; line-height: 5rem; border-radius: 50%; margin-right: .5rem;}
+.pic_member .f{ display: inline-block; float: right; height: 2rem; line-height: 2rem; font-size: 1rem; color: #00aadd; padding: 0 .5rem; border: .1rem solid #00aadd; border-radius: .5rem; cursor: pointer;}
+.pic_member .f:active{ color: #f26d8d; border: .1rem solid #f26d8d;}
+.pic_member_pic{}
+.pic_member_pic a{ display: inline-block; float: left; width: 33%; text-align: center; overflow: hidden; border: .1rem solid #aaa;}
+.pic_member_pic a img{ max-width: 100%; max-height: 100%; vertical-align: middle;}
+.pic_member_link a{ display: block; height: 3rem; line-height: 3rem; font-size: 1.2rem; text-align: center;}
+.pic_favorite{ position: fixed; right: 1rem; bottom: 3rem; width: 4rem; height: 4rem; background-color: #fff; border-radius: 50%; box-shadow: .2rem .1rem 1rem 0 #aaa;}
+.pic_favorite img{ width: 4rem; height: 4rem; border-radius: 50%;}
+.pic_comment{ border-top: 0.1rem solid #bbb;}
+
+.member_top{ position: fixed; left: 0; top: 0; z-index: 100; width: 100%; height: 3rem; line-height: 3rem; background: transparent;}
+.member_top a{ display: inline-block; width: 3rem; height: 3rem; line-height: 3rem; text-align: center;}
+.member_top .l{ float: left;}
+.member_top .r{ float: right;}
+.member_head{ position: relative; top: 0; left: 0; height: 18rem;}
+.member_head .head_bg{ height: 9rem; background-color: #2D64B3;}
+.member_head .head{ position: absolute; left: 0; top: 3rem; width: 100%; height: 12rem; line-height: 12rem; text-align: center; border-radius: 50%;}
+.member_head .head img{ width: 12rem; height: 12rem; border: .1rem solid #fff; border-radius: 50%;}
+.member_head h2{ position: absolute; left: 0; top: 15rem; width: 100%; height: 3rem; line-height: 3rem; font-size: 2rem; text-align: center;}
+.member_other{ height: 3rem; text-align: center;}
+.member_other a{ display: inline-block; width: 30%; height: 3rem; line-height: 3rem; color: #000; font-size: 1.2rem;}
+.member_other a span{ color: #888; padding-left: .4rem;}
+.member_des{ width: 80%; text-align: center; font-size: 1rem; margin: 0 auto 1rem auto;}
+@media only screen and (min-width: 500px) {
+    .member_info{ -moz-column-count: 2; -webkit-column-count: 2; column-count: 2; -webkit-column-gap: 1rem; -moz-column-gap: 1rem; column-gap: 1rem;}
+}
+@media only screen and (min-width: 1000px) {
+    .member_info{ -moz-column-count: 3; -webkit-column-count: 3; column-count: 3; -webkit-column-gap: 1rem; -moz-column-gap: 1rem; column-gap: 1rem;}
+}
+.member_info{ margin-bottom: 1rem;}
+.member_info .info{ width: 96%; font-size: 1rem; margin: 0 auto; padding: .3rem 0; border: .1rem solid #ccc;}
+.member_info .info .l{ display: inline-block; width: 29%; text-align: right; vertical-align: top;}
+.member_info .info .r{ display: inline-block; width: 69%; text-align: left;}
+.member_pic{ margin-bottom: .5rem;}
+.member_pic > .title{ width: 98%; height: 3rem; line-height: 3rem; font-size: 1.2rem; font-weight: bolder; margin: 0 auto;}
+.member_pic > .title > a{ display: inline-block; float: right; height: 3rem; font-weight: normal; font-size: 1rem; color: #888;}
+.member_pic > .title > a:after{ content: ">>";}
+.member_pic > a{ display: inline-block; float: left; width: 33%; text-align: center; overflow: hidden; border: .1rem solid #aaa;}
+.member_pic > a img{ max-width: 100%; max-height: 100%; vertical-align: middle;}
+
+
+
+
+
+

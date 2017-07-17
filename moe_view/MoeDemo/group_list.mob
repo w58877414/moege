@@ -1,0 +1,90 @@
+<div id="right_group_main" class="right_main_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_group_menu" class="right_menu_main">
+        <div id="right_group_menu_left" class="right_menu_left">
+            <form action="" method="get">
+                <ul class="clearfix">
+                    <?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+                    <?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+                    <?=$_GET['o']?'<input type="hidden" name="o" value="'.$_GET['o'].'"/>':'';?>
+                    <li><a onclick="openMark('#groupaddbox')">添加群组</a></li>
+                    <li><a href="<?=$pageviews?>&v=group">全部最新</a></li>
+                    <li><a href="<?=$this->model->self_urlget_del('o','p')?>">时间排序</a></li>
+                    <li><a href="<?=$this->model->self_urlget_replace('o', 'num', 'p')?>">热度排序</a></li>
+                    <li><input type="text" name="search" id="search" value=""/><input type="submit" value="筛选"/></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div id="right_group_list" class="right_list_table">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <th width="6%">ID</th>
+                <th width="18%">群组名</th>
+                <th width="36%">简介</th>
+                <th width="10%">会员数</th>
+                <th width="30%">操作</th>
+            </tr>
+            <?php
+            if (count($data['grouplist'])){
+                foreach ($data['grouplist'] as $k => $v) {
+                    ?>
+                    <tr>
+                        <td><?=$v['group_id']?></td>
+                        <td><a href="?v=group&gid=<?=$v['group_id']?>" target="_blank"><?=$v['group_name']?></a></td>
+                        <td><?=$v['group_info']?></td>
+                        <td><?=$v['group_num']?></td>
+                        <td>
+                            <a href="<?=$pageviews?>&v=member&gid=<?=$v['group_id']?>">成员管理</a>
+                            <?php
+                            if(isset($_GET['mid'])){
+                                ?>
+                                <a href="<?=$pageviews?>&v=memberGroupDel&mid=<?=$_GET['mid']?>&gid=<?=$v['group_id']?>" onclick="if(confirm('确定退出-<?=$v['group_name']?>-群组了吗？')){return true;}else{return false;}">退出群组</a>
+                                <?php
+                            }else{
+                                ?>
+                                <a onclick="groupupdclick('<?=$v['group_id']?>','<?=$v['group_name']?>','<?=$v['group_info']?>')">修改</a>
+                                <a href="<?=$pageviews?>&v=groupDel&gid=<?=$v['group_id']?>" onclick="if(confirm('确实要删除-<?=$v['group_name']?>-群组吗（删除群组后，用户选取以及群组下全部记录将被清空）')){return true;}else{return false;}">删除</a>
+                                <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            }else{
+                echo '<h3 style="text-algin:center; font-size: 24px;">无查询结果</h3>';
+            }
+            ?>
+        </table>
+    </div>
+    <div class="pages clearfix">
+        <?=$data['pages']?>
+    </div>
+</div>
+<div id="mask"></div>
+<div id="groupupdbox" class="popup_box">
+    <form action="<?=$pageviews?>&v=groupUpd" method="post" name="groupupd">
+        <div class="boxtitle">- 修改分类 -</div>
+        <input name="gid" value="" type="hidden">
+        <div class="boxrow"><span>分类名：</span><input name="groupname" value="" type="text"></div>
+        <div class="boxrows"><span>分类简介：</span></span><textarea rows="3" name="groupinfo"></textarea></div>
+        <div class="boxrow"><a onclick="groupupd.submit();">修改</a><a onclick="closeMark('#groupupdbox')">取消</a></div>
+    </form>
+</div>
+<div id="groupaddbox" class="popup_box">
+    <form action="<?=$pageviews?>&v=groupAdd" method="post" name="groupadd">
+        <div class="boxtitle">- 新增分类 -</div>
+        <div class="boxrow"><span>分类名：</span><input name="groupname" value="" type="text"></div>
+        <div class="boxrows"><span>分类简介：</span></span><textarea rows="3" name="groupinfo"></textarea></div>
+        <div class="boxrow"><a onclick="groupadd.submit();">添加</a><a onclick="closeMark('#groupaddbox')">取消</a></div>
+    </form>
+</div>
+<script type="text/javascript">
+    function groupupdclick(groupid,groupname,groupinfo){
+        openMark('#groupupdbox');
+        $("#groupupdbox input[name='gid']").val(groupid);
+        $("#groupupdbox input[name='groupname']").val(groupname);
+        $("#groupupdbox textarea").val(groupinfo);
+    }
+</script>

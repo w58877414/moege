@@ -1,0 +1,40 @@
+<div id="left" style="display: none;">
+    <div class="leftback" onclick="left_menu_close()"></div>
+    <?php if(empty($_SESSION['m_id'])){?>
+    <div class="unuser">
+        <a href="<?=$pageviews?>&v=login" class="loging">登录</a>
+        <a href="<?=$pageviews?>&v=signup" class="signup">注册</a>
+    </div>
+    <?php }else{?>
+    <div class="user">
+        <a href="<?=$pageviews?>&v=member&mid=<?=$_SESSION['m_id']?>" class="islogin">
+            <div class="head"><img src="<?=$_SESSION['m_head']?>"></div>
+            <div class="nickname"><?=$_SESSION['m_nickname']?></div>
+        </a>
+    </div>
+    <?php }?>
+    <div class="menu">
+        <ul>
+            <li><a href="<?=$pageviews?>">主页</a></li>
+            <li><a href="<?=$pageviews?>">最新作品</a></li>
+            <li><a href="<?=$pageviews?>&v=groupList">热门群组</a></li>
+            <li><a href="<?=$pageviews?>&v=tagList">热门标签</a></li>
+            <li><a href="<?=$pageviews?>&v=memberList">全站用户</a></li>
+        </ul>
+        <?php if(!empty($_SESSION['m_id'])){?>
+        <ul>
+            <li><a href="<?=$pageviews?>&mid=<?=$_SESSION['m_id']?>">你的作品</a></li>
+            <li><a href="<?=$pageviews?>&fmid=<?=$_SESSION['m_id']?>">你的收藏</a></li>
+            <li><a href="<?=$pageviews?>&v=memberListf&mid=<?=$_SESSION['m_id']?>">你的关注</a></li>
+            <li><a href="<?=$pageviews?>&v=memberList&mid=<?=$_SESSION['m_id']?>">你的粉丝</a></li>
+        </ul>
+        <ul>
+            <li><a href="<?=$pageviews?>&v=logout">退出登陆</a></li>
+        </ul>
+        <?php }?>
+    </div>
+</div>
+<script src="<?=$pageurl?>/js/jquery-3.1.1.min.js"></script>
+<script src="<?=$pageurl?>/js/style.js"></script>
+</body>
+</html>

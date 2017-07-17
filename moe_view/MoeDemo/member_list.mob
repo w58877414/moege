@@ -1,0 +1,86 @@
+<div id="right_member_main" class="right_main_main">
+	<div class="right_title"><h1><?=$data['title']?></h1></div>
+	<div id="right_member_menu" class="right_menu_main">
+		<div id="right_member_menu_left" class="right_menu_left">
+			<form action="" method="get">
+				<ul class="clearfix">
+					<?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+					<?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+					<?=$_GET['o']?'<input type="hidden" name="o" value="'.$_GET['o'].'"/>':'';?>
+					<li><a onclick="openMark('#memberadd')">添加会员</a></li>
+					<li><a href="<?=$pageviews?>&v=member">全部最新</a></li>
+					<li><a href="<?=$this->model->self_urlget_del('o','p')?>">时间排序</a></li>
+					<li><a href="<?=$this->model->self_urlget_replace('o', 'num', 'p')?>">作品数排序</a></li>
+					<li><input type="text" name="search" id="search" value=""/><input type="submit" value="筛选"/></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	<div id="right_member_list" class="right_list_table">
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<th width="6%">ID</th>
+				<th width="26%">昵称</th>
+				<th width="16%">用户名</th>
+				<th width="16%">邮箱</th>
+				<th width="6%">作品数</th>
+				<th width="30%">操作</th>
+			</tr>
+			<?php
+			if (count($data['memberlist'])){
+				foreach ($data['memberlist'] as $k => $v) {
+					?>
+					<tr>
+						<td><?=$v['m_id']?></td>
+						<td class="memberlist_head"><img src="<?=$v['m_head']?>" width="60" height="60"/><span><?=$v['m_nickname']?></span></td>
+						<td><?=$v['m_name']?></td>
+						<td><?=$v['m_email']?:'&nbsp;';?></td>
+						<td><a href="<?=$pageviews?>&v=pic&mid=<?=$v['m_id']?>" class="m_num_a"><?=$v['m_num']?></a></td>
+						<td>
+							<a href="<?=$pageviews?>&v=memberIn&mid=<?=$v['m_id']?>">详细</a>
+							<?php
+								if (isset($_GET['fid'])){
+									?>
+									<a href="<?=$pageviews?>&v=memberFollowDel&mid=<?=$_GET['fid']?>&fmid=<?=$v['m_id']?>" onclick="if(confirm('确定取消关注-<?=$v['m_name']?>-用户了吗？')){return true;}else{return false;}">取消关注</a>
+							<?php
+								}elseif (isset($_GET['gid'])){
+									?>
+									<a href="<?=$pageviews?>&v=memberGroupDel&mid=<?=$v['m_id']?>&gid=<?=$_GET['gid']?>" onclick="if(confirm('确定将-<?=$v['m_name']?>-用户移出群组吗？')){return true;}else{return false;}">移出群租</a>
+							<?php
+								}else{
+									?>
+									<a href="<?=$pageviews?>&v=memberClear&mid=<?=$v['m_id']?>" onclick="if(confirm('此操作会删除-<?=$v['m_name']?>-用户下的所有作品，是否确定')){return true;}else{return false;}">清空</a>
+									<a href="<?=$pageviews?>&v=memberDel&mid=<?=$v['m_id']?>" onclick="if(confirm('确实要删除-<?=$v['m_name']?>-用户吗')){return true;}else{return false;}">销户</a>
+									<?php
+								}
+							?>
+
+						</td>
+					</tr>
+					<?php
+				}
+			}else{
+				echo '<h3 style="text-align:center; font-size: 24px;">无查询结果</h3>';
+			}
+			?>
+		</table>
+	</div>
+	<div class="pages clearfix">
+		<?=$data['pages']?>
+	</div>
+</div>
+<div id="mask"></div>
+<div id="memberadd" class="popup_box">
+	<form action="<?=$pageviews?>&v=memberAdd" method="post" name="memberAdd">
+		<div class="boxtitle">- 新增用户 -</div>
+		<div class="boxrow"><span>用户名：</span><input name="mname" value="" type="text"></div>
+		<div class="boxrow"><span>昵称：</span><input name="mnickname" value="" type="text"></div>
+		<div class="boxrow"><span>输入密码：</span><input name="mpass1" value="" type="password"></div>
+		<div class="boxrow"><span>再次输入：</span><input name="mpass2" value="" type="password"></div>
+		<div class="boxrow"><a onclick="memberAdd.submit()">确认</a><a onclick="closeMark('#memberadd')">取消</a></div>
+	</form>
+</div>
+<script type="text/javascript">
+
+
+</script>

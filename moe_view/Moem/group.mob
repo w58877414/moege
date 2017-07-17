@@ -1,0 +1,12 @@
+<div id="main">
+    <div class="title"><span>群组</span></div>
+    <div class="group">
+        <h2><?=$data['ginfo']['group_name']?><span id="changegroup" onclick="changegroup(<?=$data['ginfo']['group_id']?>)"><?=($this->model->group_isjoin($data['ginfo']['group_id'],$_SESSION['m_id'])==0)?'加入':'退出';?></span></h2>
+        <div class="info"><a href="<?=$pageviews?>&v=memberList&gid=<?=$data['ginfo']['group_id']?>">成员(<?=$data['ginfo']['member_num']?>)</a><span><?=$data['ginfo']['group_ctime']?></span></div>
+        <div class="des"><?=$data['ginfo']['group_info']?></div>
+    </div>
+    <div class="group_comment">
+        <div id="SOHUCS" sid="g<?=$data['pinfo']['pic_id']?>"></div>
+    </div>
+    <script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cysT9OFWu&conf=prod_111aee1c4151a1436014113293e1b443"></script>
+</div>

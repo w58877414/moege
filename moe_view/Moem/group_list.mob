@@ -1,0 +1,24 @@
+<div id="main">
+    <div class="title"><span>群组列表</span></div>
+    <div class="grouplist">
+        <?php
+        if(count($data['grouplist'])>0){
+            foreach ($data['grouplist'] as $k => $v){
+                ?>
+                <a href="<?=$pageviews?>&v=group&gid=<?=$v['group_id']?>">
+                    <div class="gname"><?=$v['group_name']?><span><?=$v['group_ctime']?></span></div>
+                    <div class="ginfo">人数<span>(<?=$v['member_num']?>)</span>讨论数<span>(<span id = "url::<?=$pageviews?>&v=group&gid=<?=$v['group_id']?>" class = "cy_cmt_count" ></span>)</span></div>
+                    <p><?=$v['group_info']?></p>
+                </a>
+                <?php
+            }
+        }else{
+            echo '<h3>无群组结果</h3>';
+        }
+        ?>
+    </div>
+    <div class="list_page">
+        <?=$data['pages'] ?>
+    </div>
+</div>
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cysT9OFWu"></script>

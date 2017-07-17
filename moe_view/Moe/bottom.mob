@@ -1,0 +1,1 @@
+<div id="bottom" class="autow">    <div id="bottom_main">        &copy;2017 moege.cn 格萌网 备案号 Powered by Mr.moe    </div></div><script type="text/javascript" src="<?=$pageurl?>/js/jquery.min.js"></script><script type="text/javascript" src="<?=$pageurl?>/js/style.js"></script></body></html>

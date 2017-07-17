@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><?=$data['title']?></title>
+    <link rel="stylesheet" href="<?=$pageurl?>/css/style.css"/>
+    <style>
+        html,body{ background-color:#333;}
+    </style>
+</head>
+<body>
+    <div class="login">
+        <div class="login_bg"></div>
+        <div class="login_main">
+            <div class="login_title">
+                <h1>格萌网管理系统</h1>
+            </div>
+            <div class="login_form">
+                <form action="<?=$pageviews?>&v=logging" name="loginform" method="post">
+                    <div class="login_error"></div>
+                    <div class="login_row"><span>用户名：</span><input type="text" name="username" id="username" value="<?=$_COOKIE['username']?>"></div>
+                    <div class="login_row"><span>密码：</span><input type="password" name="password" id="password" value=""></div>
+                    <div class="login_button"><input name="rememberme" type="checkbox" value="rememberme">记住我的用户名<input type="submit" name="submit" onclick="return login_submit()" value="登陆"></div>
+                    <div class="login_bottom">&copy; 2017-2017 moege.com</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="<?=$pageurl?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?=$pageurl?>/js/style.js"></script>
+    <script type="text/javascript">
+        function login_submit() {
+            userrap = new RegExp("<?=trim($this->gset['user_rap'],'/')?>");
+            user = $('#username').val();
+            pass = $('#password').val();
+            if(user==''){
+                $('.login_error').text('用户名不能为空!');
+                return false;
+            }else if(pass==''){
+                $('.login_error').text('密码不能为空!');
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</body>
+</html>

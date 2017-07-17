@@ -1,0 +1,89 @@
+<div id="right_pic_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_pic_in">
+        <div id="right_pic_in_src">
+            <a href="<?=$data['pic']['pic_src']?>" target="_blank"><img src="<?=$data['pic']['pic_bsrc']?>"/></a>
+        </div>
+        <script type="text/javascript">
+            imgAutoWH('#right_pic_in_src img',720);
+        </script>
+        <div id="right_pic_in_info">
+            <h3 class="pic_in_title">
+                作品信息 for <a href=<?=$pageviews?>&v=memberIn&mid=<?=$data['pic']['m_id']?>"><?=$data['pic']['m_name']?></a>
+                <span>浏览数:<?=$data['pic']['alltimes']?>___评价得分:<?=$data['pic']['allgrade']?>___评价次数:<?=$data['pic']['allgrades']?><span>
+            </h3>
+            <form action="<?=$pageviews?>&v=picUpd" name="pic_info" method="post">
+                <ul>
+                    <input type="hidden" name="pid" value="<?=$data['pic']['pic_id']?>"/>
+                    <li><span>作品名：</span><input type="text" name="picname" value="<?=$data['pic']['pic_name']?>"/></li>
+                    <li><span>创建时间：</span><input type="text" name="picctime" value="<?=$data['pic']['pic_ctime']?>" readonly/></li>
+                    <li><span>类别：</span><select name="pictypeid">
+                            <?php
+                                foreach ($data['typelist'] as $k => $v) {
+                                    $select = ($v['type_id'] == $data['pic']['pic_typeid'])? ' selected':'';
+                                    echo '<option value="'.$v['type_id'].'" '.$select.'>'.$v['type_name'].'</option>';
+                                }
+                            ?>
+                        </select>
+                    </li>
+                    <li><span>作画工具：</span><input type="text" name="pictool" value="<?=$data['pic']['pic_tool']?>"/></li>
+                    <li class="tag_info"><span>标签：</span>
+                        <ul>
+                            <?php
+                            if (count($data['taglist'])){
+                                foreach ($data['taglist'] as $k => $v) {
+                                    ?>
+                                    <li><a href="<?=$pageviews?>&v=pic&tagid=<?=$v['tag_id']?>"><?=$v['tag_name']?></a><a class="tagdelete" href="<?=$pageviews?>&v=picTagDel&tagid=<?=$v['tag_id']?>&pid=<?=$data['pic']['pic_id']?>" onclick="if(confirm('是否删除标签-<?=$v['tag_name']?>-')){return true;}else{return false;}">X</a></li>
+                                    <?php
+                                }
+                            }
+                            ?>
+                            <li class="tag_add"><input type="text" name="tagname" value=""><a onclick="pictagadd();">添加</a></li>
+                        </ul>
+                    </li>
+                    <li class="long_info"><span>简介：</span>
+                        <textarea name="picinfo"><?=$data['pic']['pic_info']?></textarea>
+                    </li>
+                    <li class="menu_info">快捷操作：
+                        <a onclick="openUpd()" id="pic_info_upd">修改图片信息</a>
+                        <a href="<?=$pageviews?>&v=picDel&pid=<?=$data['pic']['pic_id']?>" onclick="if(confirm('确实要删除-<?=$data['pic']['pic_name']?>-作品吗?')){return true;}else{return false;}">删除该作品</a>
+                        <a href="<?=$pageviews?>&v=pic">返回列表</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function pictagadd() {
+        if (document.cookie.indexOf('pic_upd_return') >= 0){
+            $.post("<?=$pageviews?>&v=picTagAdd&pid=<?=$data['pic']['pic_id']?>",{tagname:$(".tag_add input").val()},function(data,status,xhr){
+                if(data.indexOf('成功')>=0){
+                    alert(data);
+                    location.replace(location.href);
+                }else{
+                    alert(data);
+                }
+            },"text")
+        }else{
+            alert('请先点击--修改图片信息--按钮才允许添加标签');
+        }
+    }
+    if (document.cookie.indexOf('pic_upd_return') >= 0){
+        $("#pic_info_upd").attr("onclick","pic_info.submit()");
+        $("#pic_info_upd").text("确认修改");
+        $("#pic_info_upd").after('<a href="<?=$pageviews?>&v=picUpdDis">取消修改</a>');
+    }else{
+        $("#right_pic_in_info input").attr("disabled", true);
+        $("#right_pic_in_info select").attr("disabled", true);
+        $("#right_pic_in_info textarea").attr("disabled", true);
+    }
+    function openUpd() {
+        $("#right_pic_in_info input").attr("disabled", false);
+        $("#right_pic_in_info select").attr("disabled", false);
+        $("#right_pic_in_info textarea").attr("disabled", false);
+        $("#pic_info_upd").attr("onclick","pic_info.submit()");
+        $("#pic_info_upd").text("确认修改");
+        $("#pic_info_upd").after('<a href="<?=$pageviews?>&v=picUpdDis">取消修改</a>');
+    }
+</script>

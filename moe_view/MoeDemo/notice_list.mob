@@ -1,0 +1,49 @@
+<div id="right_notice_main" class="right_main_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_notice_menu" class="right_menu_main">
+        <div id="right_notice_menu_left" class="right_menu_left">
+            <form action="" method="get">
+                <?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+                <?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+                <ul class="clearfix">
+                    <li><a href="<?=$pageviews?>&v=noticeAdd">新增公告</a></li>
+                    <li><a href="<?=$pageviews?>&v=notice">全部</a></li>
+                    <li><input type="text" name="search" id="search" value=""/><input type="submit" value="筛选"/></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div id="right_notice_list" class="right_list_table">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <th width="6%">ID</th>
+                <th width="44%">公告名</th>
+                <th width="20%">时间</th>
+                <th width="30%">操作</th>
+            </tr>
+            <?php
+            if (count($data['noticelist'])){
+                foreach ($data['noticelist'] as $k => $v) {
+                    ?>
+                    <tr>
+                        <td><?=$v['id']?></td>
+                        <td><?=$v['title']?></td>
+                        <td><?=$v['ctime']?></td>
+                        <td>
+                            <a href="?v=notice&nid=<?=$v['id']?>" target="_blank">查看</a>
+                            <a href="<?=$pageviews?>&v=noticeUpd&nid=<?=$v['id']?>">修改</a>
+                            <a href="<?=$pageviews?>&v=noticeDel&nid=<?=$v['id']?>" onclick="if(confirm('确实要删除-<?=$v['id']?>-公告吗?')){return true;}else{return false;}">删除</a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            }else{
+                echo '<h3 style="text-algin:center; font-size: 24px;">无查询结果</h3>';
+            }
+            ?>
+        </table>
+    </div>
+    <div class="pages clearfix">
+        <?=$data['pages']?>
+    </div>
+</div>

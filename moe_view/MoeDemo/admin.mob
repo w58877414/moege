@@ -1,0 +1,212 @@
+<div id="right_admin_main">
+    <div class="right_title"><h1><?=$data['title']?></h1></div>
+    <div id="right_admin_in">
+        <div id="right_admin_inL">
+            <div class="right_admin_inL_head">
+                <a onclick="openMark('#adminupdhead')">
+                    <img src="<?=$data['info']['a_head']?>" width="100" height="100"/>
+                    <span>修改头像</span>
+                </a>
+            </div>
+            <div class="right_admin_inL_info">
+                <h3 class="admin_in_title">我的资料</h3>
+                <ul>
+                    <form action="<?=$pageviews?>&v=adminUpd" name="admin_info" method="post">
+                        <input name="aid" value="<?=$data['info']['a_id']?>" type="hidden">
+                        <input name="ousername" value="<?=$data['info']['a_username']?>" type="hidden">
+                        <li><span>用户名：</span></li>
+                        <li><input type="text" name="username" value="<?=$data['info']['a_username']?>"/></li>
+                        <li><span>昵称：</span></li>
+                        <li><input type="text" name="nickname" value="<?=$data['info']['a_nickname']?>"/></li>
+                        <li><span>邮箱：</span></li>
+                        <li><input type="email" name="email" value="<?=$data['info']['a_email']?>"/></li>
+                        <li><span>电话：</span></li>
+                        <li><input type="text" name="phone" value="<?=$data['info']['a_phone']?>"/></li>
+                        <li><span>管理等级：</span><select name="level" <?=($_SESSION['a_level']!=='0')?'disabled':'';?>>
+                                <option value="2"<?=$data['info']['a_level']==2?'selected':'';?>>2</option>
+                                <option value="1"<?=$data['info']['a_level']==1?'selected':'';?>>1</option>
+                                <option value="0"<?=$data['info']['a_level']==0?'selected':'';?>>0</option>
+                            </select>
+                        </li>
+                        <li><span>创建时间：</span></li>
+                        <li><span><?=$data['info']['a_ctime']?></span></li>
+                        <li><a onclick="openMark('#adminupdpass')" id="updpass">改密</a><a onclick="admin_info.submit()" id="updinfo">更新资料</a></li>
+                        <li>
+                            <?php if($_SESSION['a_level']==='0'||$_SESSION['a_id']==$data['info']['a_id']){?>
+                            <a href="<?=$pageviews?>&v=adminDel&aid=<?=$data['info']['a_id']?>" onclick="if(confirm('此操作将注销该账户且连同日志一起删除')){return true;}else{return false;}">注销账户</a>
+                            <?php }?>
+                            <?php if($_SESSION['a_level']==='0'){?><a onclick="openMark('#adminadd')" id="addadmin">新建管理员</a><?php }?>
+                        </li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+        <div id="right_admin_inR">
+            <div class="right_admin_inR_list">
+                <h3 class="admin_in_title">操作日志</h3>
+                <div class="right_admin_inR_list_menu">
+                    <form action="" method="get" name="adminlogSearch">
+                        <?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+                        <?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+                        <a href="<?=$this->model->self_urlget_del('p')?>">全部日志</a>
+                        <input type="text" name="searchlogkey" value=""/>
+                        <select name="searchlogtype">
+                            <option value="aid">用户ID</option>
+                            <option value="aurl" selected>访问地址</option>
+                            <option value="ip">IP</option>
+                        </select>
+                        <input type="submit" value="搜索">
+                    </form>
+                </div>
+                <table>
+                    <tr>
+                        <th width="10%">ID</th>
+                        <th width="10%">用户ID</th>
+                        <th width="40%">访问地址</th>
+                        <th width="20%">IP</th>
+                        <th width="20%">时间</th>
+                    </tr>
+                    <?php
+                    foreach ($data['log_list'] as $k=>$v){
+                        ?>
+                        <tr>
+                            <td><?=$v['id']?></td>
+                            <td><?=$v['aid']?></td>
+                            <td><?=$v['aurl']?></td>
+                            <td><?=$v['ip']?></td>
+                            <td><?=$v['atime']?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </table>
+                <div class="pages clearfix">
+                    <?=$data['pages']?>
+                </div>
+            </div>
+            <?php
+                if($_SESSION['a_level']==='0'){
+            ?>
+            <div class="right_admin_inR_list">
+                <h3 class="admin_in_title">管理员列表</h3>
+                <div class="right_admin_inR_list_menu">
+                    <form action="" method="get" name="adminSearch">
+                        <?=$_GET['m']?'<input type="hidden" name="m" value="'.$_GET['m'].'"/>':'';?>
+                        <?=$_GET['v']?'<input type="hidden" name="v" value="'.$_GET['v'].'"/>':'';?>
+                        <a href="<?=$this->model->self_urlget_del('pp')?>">全部管理</a>
+                        <input type="text" name="searchkey" value=""/>
+                        <select name="searchtype">
+                            <option value="id">ID</option>
+                            <option value="nickname" selected>昵称</option>
+                            <option value="username">用户名</option>
+                        </select>
+                        <input type="submit" value="搜索">
+                    </form>
+                </div>
+                <table>
+                    <tr>
+                        <th width="6%">ID</th>
+                        <th width="26%">昵称</th>
+                        <th width="18%">用户名</th>
+                        <th width="22%">邮箱</th>
+                        <th width="6%">等级</th>
+                        <th width="22%">创建时间</th>
+                    </tr>
+                    <?php
+                        foreach ($data['list'] as $k=>$v){
+                    ?>
+                    <tr>
+                        <td><a href="<?=$pageviews?>&v=admin&aid=<?=$v['a_id']?>"><?=$v['a_id']?></a></td>
+                        <td><a href="<?=$pageviews?>&v=admin&aid=<?=$v['a_id']?>"><?=$v['a_nickname']?></a></td>
+                        <td><a href="<?=$pageviews?>&v=admin&aid=<?=$v['a_id']?>"><?=$v['a_username']?></a></td>
+                        <td><?=$v['a_email']?></td>
+                        <td><?=$v['a_level']?></td>
+                        <td><?=$v['a_ctime']?></td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                </table>
+                <div class="pages clearfix">
+                    <?=$data['pagespp']?>
+                </div>
+            </div>
+            <?php
+                }
+            ?>
+        </div>
+    </div>
+</div>
+<div id="mask"></div>
+<div id="adminadd" class="popup_box">
+    <form action="<?=$pageviews?>&v=adminAdd" method="post" name="adminAdd">
+        <div class="boxtitle">- 新增管理员 -</div>
+        <div class="boxrow"><span>用户名：</span><input name="ausername" value="" type="text"></div>
+        <div class="boxrow"><span>昵称：</span><input name="anickname" value="" type="text"></div>
+        <div class="boxrow"><span>输入密码：</span><input name="mpass1" value="" type="password"></div>
+        <div class="boxrow"><span>再次输入：</span><input name="mpass2" value="" type="password"></div>
+        <div class="boxrow"><span>权限：</span>
+            <select name="alevel">
+                <option value="2" selected>2</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
+        </div>
+        <div class="boxrow"><a onclick="adminAdd.submit()">确认</a><a onclick="closeMark('#adminadd')">取消</a></div>
+    </form>
+</div>
+<div id="adminupdpass" class="popup_box">
+    <form action="<?=$pageviews?>&v=adminUpdPass" method="post" name="adminUpdPass">
+        <div class="boxtitle">- 密码修改 -</div>
+        <input name="aid" value="<?=$data['info']['a_id']?>" type="hidden">
+        <div class="boxrow"><span>输入密码：</span><input name="mpass1" value="" type="password"></div>
+        <div class="boxrow"><span>再次输入：</span><input name="mpass2" value="" type="password"></div>
+        <div class="boxrow"><a onclick="adminupdpasssubmit()">修改</a><a onclick="closeMark('#adminupdpass')">取消</a></div>
+    </form>
+</div>
+<div id="adminupdhead" class="popup_box">
+    <form action="<?=$pageviews?>&v=adminUpdhead" method="post" enctype="multipart/form-data" name="adminUpdhead">
+        <div class="boxtitle">- 头像修改 -</div>
+        <input name="aid" value="<?=$data['info']['a_id']?>" type="hidden">
+        <input name="headS" value="160" type="hidden">
+        <input name="headW" value="" type="hidden">
+        <input name="headH" value="" type="hidden">
+        <input name="headT" value="" type="hidden">
+        <input name="headL" value="" type="hidden">
+        <div class="boxrow"><span>上传头像：</span><input name="mhead1" type="file" onchange="changeShowLoad(this)"></div>
+        <div class="boxmsg">注意：<?=$this->gset['head_sizeinfo']?></div>
+        <div class="boxmsg"><?=$this->gset['img_typeinfo']?></div>
+        <div class="imghead">
+            <div class="imghead_b"></div>
+            <div class="imghead_h"><img src=''></div>
+            <div class="imghead_f"><img src=''></div>
+        </div>
+        <div class="boxrow"><a onclick="adminUpdheadSub()">上传</a><a onclick="closeMark('#adminupdhead')">取消</a></div>
+    </form>
+</div>
+<script type="text/javascript">
+    function adminupdpasssubmit() {
+        mpass1 = adminUpdPass.mpass1.value;
+        mpass2 = adminUpdPass.mpass2.value;
+        if(mpass1 == mpass2){
+            adminUpdPass.submit();
+        }else{
+            alert('两次密码输入不一致');
+        }
+    }
+    function changeShowLoad(file) {
+        showUploadImg(file,'#adminupdhead .imghead img',160);
+        imgAutoWHmax('#adminupdhead .imghead img',160);
+        $('#adminupdhead .imghead img').load(function () {
+            changeImgsize('#adminupdhead .imghead');
+            moveImgposition('#adminupdhead .imghead');
+        });
+    }
+    function adminUpdheadSub() {
+        $('#adminupdhead input[name="headW"]').attr('value',parseFloat($('#adminupdhead .imghead img').css('width')));
+        $('#adminupdhead input[name="headH"]').attr('value',parseFloat($('#adminupdhead .imghead img').css('height')));
+        $('#adminupdhead input[name="headT"]').attr('value',parseFloat($('#adminupdhead .imghead img').css('top')));
+        $('#adminupdhead input[name="headL"]').attr('value',parseFloat($('#adminupdhead .imghead img').css('left')));
+        $('#adminupdhead form').submit();
+    }
+</script>

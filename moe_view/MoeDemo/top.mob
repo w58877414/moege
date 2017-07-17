@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title><?=$data['title']?>-格萌网后台</title>
+    <link rel="stylesheet" href="<?=$pageurl?>/css/style.css"/>
+    <script type="text/javascript" src="<?=$pageurl?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?=$pageurl?>/js/style.js"></script>
+</head>
+<body>
+<div id="main">
+    <div id="left">
+        <div id="left-main">
+            <h1>格萌网</h1>
+            <div id="left-head">
+                <div id="left-head-img">
+                    <a href="<?=$pageviews?>&v=admin"><img src="<?=$_SESSION['a_head']?>"/></a>
+                </div>
+                <div id="left-head-name"><a href="<?=$pageviews?>&v=admin"><?=$_SESSION['a_nickname']?></a></div>
+            </div>
+            <div id="left-home">
+                <div id="left-home-img">
+                    <a href="./" title="网站前台" class="lhimg1" target="_blank"></a>
+                    <a href="<?=$pageviews?>" title="后台主页" class="lhimg2"></a>
+                    <a href="<?=$pageviews?>&v=logout" title="退出" class="lhimg3"></a>
+                </div>
+            </div>
+            <div id="left-nav">
+                <ul id="left-nav-ul">
+                    <li><a href="<?=$pageviews?>">后台主页</a></li>
+                    <li><a href="<?=$pageviews?>&v=notice">公告管理</a></li>
+                    <li><a href="<?=$pageviews?>&v=pic">作品管理</a></li>
+                    <li><a href="<?=$pageviews?>&v=tag">标签管理</a></li>
+                    <li><a href="<?=$pageviews?>&v=type">分类管理</a></li>
+                    <li><a href="<?=$pageviews?>&v=group">群组管理</a></li>
+                    <li><a href="<?=$pageviews?>&v=member">会员管理</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="right">
+        <div id="right-main">

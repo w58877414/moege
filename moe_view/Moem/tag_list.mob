@@ -1,0 +1,19 @@
+<div id="main">
+    <div class="title"><span>标签列表</span></div>
+    <div class="taglist">
+        <?php
+        if(count($data['taglist'])>0){
+            foreach ($data['taglist'] as $k => $v){
+                ?>
+                <a href="<?=$pageviews?>&tid=<?=$v['tag_id']?>"><?=$v['tag_name']?>(<?=$v['pic_num']?>)</a>
+                <?php
+            }
+        }else{
+            echo '<h3>无标签结果</h3>';
+        }
+        ?>
+    </div>
+    <div class="list_page">
+        <?=$data['pages'] ?>
+    </div>
+</div>
